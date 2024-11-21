@@ -50,7 +50,14 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
   const handleFileSelect = (event) => {
     const file = event.target.files[0];
     if (file) {
-      if (file.type !== "image/jpeg" && file.type !== "image/png") {
+      const validImageTypes = ["image/jpeg", "image/png"];
+      const fileExtension = file.name.split(".").pop().toLowerCase();
+
+      // Check MIME type and file extension
+      if (
+        (!file.type || !validImageTypes.includes(file.type)) &&
+        !["jpg", "jpeg", "png"].includes(fileExtension)
+      ) {
         setToast({
           message: "Please upload a valid image file (JPEG or PNG)",
           severity: "error",
@@ -58,8 +65,9 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
         });
         return;
       }
+
+      // File size check
       if (file.size > 5 * 1024 * 1024) {
-        // 5MB limit
         setToast({
           message: "File size should be less than 5MB",
           severity: "error",
@@ -67,6 +75,8 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
         });
         return;
       }
+
+      // If all checks pass
       setToast({ ...toast, message: "", open: false });
       setSelectedFile(file);
       setPreview(URL.createObjectURL(file));
