@@ -14,10 +14,8 @@ def process_xray_upload(patient_id, file):
     labels, a = get_labels_from_csv(file.filename)
     
     if a==1:
-        print(f"Labels found in CSV for {file.filename}")
         predictions = labels
     else:
-        print(f"No labels found in CSV. Sending {file.filename} to Roboflow.")
         # Fall back to Roboflow API if labels are not found in CSV
         predictions = send_to_roboflow(file_path).get('predictions', [])
         if not predictions:
