@@ -1,6 +1,7 @@
 import os
 import base64
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
+
 
 def draw_boxes(image_path, predictions, output_folder):
     with Image.open(image_path) as img:
@@ -14,7 +15,25 @@ def draw_boxes(image_path, predictions, output_folder):
             confidence = pred.get('confidence', 1.0)
             text = f"{label} ({confidence:.2f})"
             draw.rectangle([x-w/2, y-h/2, x+w/2, y+h/2], outline="red", width=2)
-            draw.text((x-w/2, y-h/2 - 10), text, fill="red")
+
+            bbox = draw.textbbox((0, 0), text)
+            text_width = bbox[2] - bbox[0]
+            text_height = bbox[3] - bbox[1]
+
+            # Draw white background for text
+            text_x = x-w/2
+            text_y = y-h/2 - text_height - 4
+            draw.rectangle(
+                [text_x, text_y, text_x + text_width + 4, text_y + text_height + 4],
+                fill="white"
+            )
+            draw.text((text_x + 2, text_y + 2), text, fill="red")
+
+
+
+
+
+            # draw.text((x-w/2, y-h/2 - 10), text, fill="red")
 
         output_path = f"{output_folder}/labeled_{os.path.basename(image_path)}"
         img.save(output_path)
