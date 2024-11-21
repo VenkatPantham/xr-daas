@@ -141,6 +141,7 @@ const DoctorDashboard = () => {
     };
     setTempFilters(resetFilters);
     setAppliedFilters(resetFilters);
+    setFilterDialogOpen(false);
   };
 
   // Open dialog with current applied filters

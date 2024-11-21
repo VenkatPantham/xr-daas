@@ -121,7 +121,11 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
             <StyledPreviewImage
               src={preview}
               alt="X-ray preview"
-              onClick={() => setShowPreview(true)}
+              onClick={!xrayLoading ? () => setShowPreview(true) : null}
+              sx={{
+                cursor: xrayLoading ? "not-allowed" : "pointer",
+                opacity: xrayLoading ? 0.7 : 1,
+              }}
             />
             <IconButton
               onClick={() => {
@@ -129,6 +133,7 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
                 setPreview(null);
                 setToast({ ...toast, message: "", open: false });
               }}
+              disabled={xrayLoading}
               sx={{
                 position: "absolute",
                 top: 8,
@@ -138,6 +143,10 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
                 "&:hover": {
                   bgcolor: "rgba(0,0,0,0.7)",
                 },
+                ...(xrayLoading && {
+                  cursor: "not-allowed",
+                  opacity: 0.5,
+                }),
               }}
             >
               <CloseIcon />
@@ -196,6 +205,7 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
         <Box sx={{ position: "relative" }}>
           <IconButton
             onClick={() => setShowPreview(false)}
+            disabled={xrayLoading}
             sx={{
               position: "absolute",
               right: 8,
@@ -205,6 +215,10 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
               "&:hover": {
                 bgcolor: "rgba(0,0,0,0.7)",
               },
+              ...(xrayLoading && {
+                cursor: "not-allowed",
+                opacity: 0.5,
+              }),
             }}
           >
             <CloseIcon />
