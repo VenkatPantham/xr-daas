@@ -128,7 +128,7 @@ const XrayDetails = () => {
           <XrayCard>
             <CardContent>
               <Typography variant="h6" gutterBottom>
-                Enhanced X-ray
+                Labeled X-ray
               </Typography>
             </CardContent>
             <ImageContainer>
