@@ -15,8 +15,6 @@ def create_patient(name, age, gender, email, password):
         "password": hashed_password,  # Store the hashed password
         "medical_records": [],
         "risk_factors": [],
-        "created_at": datetime.datetime.utcnow(),
-        "updated_at": datetime.datetime.utcnow()
     }
     
     # Insert patient into the database

@@ -14,8 +14,6 @@ def create_doctor(name, email, password, specialty, hospital_affiliation):
         "specialty": specialty,
         "hospital_affiliation": hospital_affiliation,
         "patients": [],  # Initial empty list of patients
-        "created_at": datetime.datetime.utcnow(),
-        "updated_at": datetime.datetime.utcnow()
     }
     
     doctor_id = mongo.db.doctors.insert_one(doctor).inserted_id
