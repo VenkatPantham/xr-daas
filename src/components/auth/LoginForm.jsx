@@ -9,8 +9,6 @@ import {
   IconButton,
   ToggleButtonGroup,
   ToggleButton,
-  Snackbar,
-  Alert,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
@@ -21,6 +19,7 @@ import {
   PersonOutlined,
   LocalHospitalOutlined,
 } from "@mui/icons-material";
+import ToastNotification from "../common/ToastNotification";
 
 const Form = styled("form")(({ theme }) => ({
   display: "flex",
@@ -90,7 +89,11 @@ const LoginForm = () => {
     password: "",
     userType: "",
   });
-  const [error, setError] = useState("");
+  const [toast, setToast] = useState({
+    message: "",
+    severity: "success",
+    open: false,
+  });
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
@@ -98,7 +101,7 @@ const LoginForm = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-    setError("");
+    setToast({ ...toast, message: "", open: false });
   };
 
   const handleRoleChange = (_, newRole) => {
@@ -107,18 +110,22 @@ const LoginForm = () => {
         ...formData,
         userType: newRole,
       });
-      setError("");
+      setToast({ ...toast, message: "", open: false });
     }
   };
 
-  const handleCloseError = () => {
-    setError("");
+  const closeToast = () => {
+    setToast({ ...toast, message: "", open: false });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.userType) {
-      setError("Please select a role");
+      setToast({
+        message: "Please select a role",
+        severity: "error",
+        open: true,
+      });
       return;
     }
     try {
@@ -129,7 +136,11 @@ const LoginForm = () => {
           : "/patient/dashboard";
       navigate(path);
     } catch (err) {
-      setError(err.message || "Invalid credentials");
+      setToast({
+        message: err.message || "Invalid credentials",
+        severity: "error",
+        open: true,
+      });
     }
   };
 
@@ -167,7 +178,7 @@ const LoginForm = () => {
           onChange={handleChange}
           required
           fullWidth
-          error={Boolean(error)}
+          error={Boolean(toast.message)}
         />
 
         <TextField
@@ -178,7 +189,7 @@ const LoginForm = () => {
           onChange={handleChange}
           required
           fullWidth
-          error={Boolean(error)}
+          error={Boolean(toast.message)}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -223,22 +234,11 @@ const LoginForm = () => {
           </Box>
         </Box> */}
       </Form>
-
-      <Snackbar
-        open={Boolean(error)}
-        autoHideDuration={6000}
-        onClose={handleCloseError}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      >
-        <Alert
-          onClose={handleCloseError}
-          severity="error"
-          variant="filled"
-          sx={{ width: "100%" }}
-        >
-          {error}
-        </Alert>
-      </Snackbar>
+      <ToastNotification
+        severity={toast.severity}
+        message={toast.message}
+        closeToast={closeToast}
+      />
     </>
   );
 };

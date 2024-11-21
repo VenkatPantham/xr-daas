@@ -6,7 +6,6 @@ import {
   CardContent,
   Box,
   IconButton,
-  Divider,
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
@@ -19,7 +18,6 @@ import {
   setPatientXray,
 } from "../../redux/slices/patientSlice";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
-import DoctorAnalysisView from "../doctor/DoctorAnalysis";
 import PatientAnalysis from "../patient/PatientAnalysis";
 import DoctorAnalysis from "../doctor/DoctorAnalysis";
 
@@ -119,7 +117,7 @@ const XrayDetails = () => {
               <XrayImage
                 src={`data:${detectMimeType(
                   xray?.original_image || ""
-                )};base64,${xray?.original_image}`}
+                )};base64,${xray?.original_image || ""}`}
                 alt="Original X-ray"
               />
             </ImageContainer>
@@ -137,7 +135,7 @@ const XrayDetails = () => {
               <XrayImage
                 src={`data:${detectMimeType(
                   xray?.labeled_image || ""
-                )};base64,${xray?.labeled_image}`}
+                )};base64,${xray?.labeled_image || ""}`}
                 alt="Labeled X-ray"
               />
             </ImageContainer>

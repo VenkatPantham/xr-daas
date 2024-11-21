@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   IconButton,
-  Alert,
   Typography,
   CircularProgress,
   Dialog,
@@ -12,6 +11,7 @@ import {
 import { CloudUpload, Close as CloseIcon } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadPatientXray } from "../../redux/slices/patientSlice";
+import ToastNotification from "../common/ToastNotification";
 
 // Create styled components
 const HiddenInput = styled("input")({
@@ -38,7 +38,12 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
-  const [error, setError] = useState(null);
+  const [toast, setToast] = useState({
+    message: "",
+    severity: "success",
+    open: false,
+  });
+
   const [showPreview, setShowPreview] = useState(false);
   const { xrayLoading } = useSelector((state) => state.patient);
 
@@ -46,15 +51,23 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
     const file = event.target.files[0];
     if (file) {
       if (file.type !== "image/jpeg" && file.type !== "image/png") {
-        setError("Please upload a valid image file (JPEG or PNG)");
+        setToast({
+          message: "Please upload a valid image file (JPEG or PNG)",
+          severity: "error",
+          open: true,
+        });
         return;
       }
       if (file.size > 5 * 1024 * 1024) {
         // 5MB limit
-        setError("File size should be less than 5MB");
+        setToast({
+          message: "File size should be less than 5MB",
+          severity: "error",
+          open: true,
+        });
         return;
       }
-      setError(null);
+      setToast({ ...toast, message: "", open: false });
       setSelectedFile(file);
       setPreview(URL.createObjectURL(file));
     }
@@ -62,11 +75,28 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
 
   const handleUpload = () => {
     if (!selectedFile) return;
-    dispatch(uploadPatientXray(selectedFile)).then(() => {
-      // Clear file and preview after successful upload
-      setSelectedFile(null);
-      setPreview(null);
-    });
+    dispatch(uploadPatientXray(selectedFile))
+      .then(() => {
+        // Clear file and preview after successful upload
+        setToast({
+          message: "X-ray analysis completed",
+          severity: "success",
+          open: true,
+        });
+        setSelectedFile(null);
+        setPreview(null);
+      })
+      .catch((error) => {
+        setToast({
+          message: error?.message || "Something went wrong",
+          severity: "error",
+          open: true,
+        });
+      });
+  };
+
+  const closeToast = () => {
+    setToast({ ...toast, message: "", open: false });
   };
 
   return (
@@ -97,7 +127,7 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
               onClick={() => {
                 setSelectedFile(null);
                 setPreview(null);
-                setError(null);
+                setToast({ ...toast, message: "", open: false });
               }}
               sx={{
                 position: "absolute",
@@ -135,16 +165,6 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
               onChange={handleFileSelect}
             />
           </Button>
-        )}
-
-        {error && (
-          <Alert
-            severity="error"
-            onClose={() => setError(null)}
-            sx={{ width: "100%" }}
-          >
-            {error}
-          </Alert>
         )}
 
         <Typography variant="body2" color="text.secondary">
@@ -200,6 +220,11 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
           />
         </Box>
       </Dialog>
+      <ToastNotification
+        severity={toast.severity}
+        message={toast.message}
+        closeToast={closeToast}
+      />
     </Box>
   );
 };

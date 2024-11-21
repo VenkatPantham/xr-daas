@@ -26,19 +26,17 @@ import {
   Phone,
   CalendarToday,
   Assignment,
-  Event,
+  // Event,
   MedicalInformation,
   LocalHospital,
   Notifications,
-  CalendarMonth,
+  // CalendarMonth,
   CloudUpload,
-  Close as CloseIcon,
 } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 import StatusChip from "./StatusChip";
 import { PageContainer } from "../../styles/components";
 import UploadXray from "../patient/UploadXray";
-import LoadingSpinner from "./LoadingSpinner";
 
 const InfoCard = styled(Card)(({ theme }) => ({
   height: "100%",
@@ -92,17 +90,17 @@ const TimelineCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-const RecommendationBox = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(2),
-  backgroundColor: theme.palette.background.default,
-  borderRadius: theme.shape.borderRadius,
-  display: "flex",
-  gap: theme.spacing(2),
-  alignItems: "flex-start",
-  [theme.breakpoints.down("sm")]: {
-    padding: theme.spacing(1.5),
-  },
-}));
+// const RecommendationBox = styled(Box)(({ theme }) => ({
+//   padding: theme.spacing(2),
+//   backgroundColor: theme.palette.background.default,
+//   borderRadius: theme.shape.borderRadius,
+//   display: "flex",
+//   gap: theme.spacing(2),
+//   alignItems: "flex-start",
+//   [theme.breakpoints.down("sm")]: {
+//     padding: theme.spacing(1.5),
+//   },
+// }));
 
 const PatientDetails = ({
   isDoctor = false,

@@ -1,15 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axiosInstance from "../../utils/axiosInstance";
 
 // Create async thunk for login
 export const loginUser = createAsyncThunk(
   "auth/login",
   async ({ email, password, userType }) => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/login/${userType}`,
-        { email, password }
-      );
+      const response = await axiosInstance.post(`/login/${userType}`, {
+        email,
+        password,
+      });
 
       // Store token and expiration time in localStorage
       localStorage.setItem("access_token", response.data.token);
@@ -39,23 +39,6 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
-
-// Create async thunk for logout
-export const logoutUser = createAsyncThunk("auth/logout", async () => {
-  try {
-    // Send POST request to the backend to log the user out and delete the cookie
-    const response = await axios.get(
-      `${process.env.REACT_APP_API_URL}/patient/673d13945480767709c5a2c5/medical_records`,
-      {},
-      { withCredentials: true }
-    );
-
-    // Return the response message (if needed for UI)
-    return response.data;
-  } catch (error) {
-    throw new Error("Logout failed");
-  }
-});
 
 const authSlice = createSlice({
   name: "auth",
