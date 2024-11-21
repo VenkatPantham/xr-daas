@@ -19,7 +19,7 @@ def create_app():
     secure_flag = is_production
 
     # Enable CORS for all routes and specific origins
-    CORS(app, origins=["http://localhost:3000"], supports_credentials=True)
+    CORS(app, supports_credentials=True)
 
     # Initialize extensions with the app
     mongo.init_app(app)
