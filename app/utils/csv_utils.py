@@ -24,6 +24,8 @@ def get_labels_from_csv(image_filename):
 
         # Filter rows where `image_id` matches the base name
         filtered_data = train_data[train_data['image_id'] == base_name]
+        if len(filtered_data) != 0:
+            a = 1
 
         # Generate a list of labels for the image
         labels = []
@@ -38,7 +40,7 @@ def get_labels_from_csv(image_filename):
                     "confidence": row.get('confidence', 0.8) * 100  # Default confidence
                 })
 
-        return labels
+        return (labels, a)
     except Exception as e:
         print(f"Error reading labels from CSV: {e}")
         return []

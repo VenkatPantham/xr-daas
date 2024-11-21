@@ -11,8 +11,9 @@ def process_xray_upload(patient_id, file):
     file_path = save_uploaded_file(file, upload_folder)
 
     # Try to retrieve labels from CSV
-    labels = get_labels_from_csv(file.filename)
-    if labels:
+    labels, a = get_labels_from_csv(file.filename)
+    
+    if a==1:
         print(f"Labels found in CSV for {file.filename}")
         predictions = labels
     else:
