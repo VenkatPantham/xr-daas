@@ -13,7 +13,16 @@ export const loginUser = createAsyncThunk(
 
       // Store token and expiration time in localStorage
       localStorage.setItem("access_token", response.data.token);
-      localStorage.setItem("token_expiry", 3600000);
+      localStorage.setItem("token_expiry", Date.now() + 3600000);
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          id: response.data.id,
+          name: response.data.name,
+          email: response.data.email,
+        })
+      );
+      localStorage.setItem("userType", userType);
 
       // The token is now stored in cookies and will be sent with future requests automatically
       return {
@@ -26,7 +35,6 @@ export const loginUser = createAsyncThunk(
         token: response.data.token,
       };
     } catch (error) {
-      console.log({ error });
       throw new Error(error.response?.data?.message || "Invalid credentials");
     }
   }
@@ -42,12 +50,9 @@ export const logoutUser = createAsyncThunk("auth/logout", async () => {
       { withCredentials: true }
     );
 
-    console.log({ response });
-
     // Return the response message (if needed for UI)
     return response.data;
   } catch (error) {
-    console.log({ error });
     throw new Error("Logout failed");
   }
 });
@@ -55,10 +60,12 @@ export const logoutUser = createAsyncThunk("auth/logout", async () => {
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: null,
-    userType: null,
-    token: null,
-    isAuthenticated: false,
+    user: localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
+      : null, // Retrieve user data from localStorage
+    userType: localStorage.getItem("userType") || null, // Retrieve token from localStorage
+    token: localStorage.getItem("access_token") || null, // Retrieve token from localStorage
+    isAuthenticated: Boolean(localStorage.getItem("access_token")), // Check if token exists
     loading: false,
     error: null,
   },

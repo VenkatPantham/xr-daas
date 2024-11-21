@@ -35,10 +35,11 @@ import {
   Close,
 } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PageContainer } from "../../styles/components";
 import { fetchPatients } from "../../redux/slices/doctorSlice";
 import StatusChip from "../../components/common/StatusChip";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 const StatsCard = styled(Card)(({ theme }) => ({
   height: "100%",
@@ -75,12 +76,12 @@ const SearchTextField = styled(TextField)(({ theme }) => ({
 }));
 
 const DoctorDashboard = () => {
-  const theme = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [tabValue, setTabValue] = useState(0);
   const { patients, loading } = useSelector((state) => state.doctor);
   const { user } = useSelector((state) => state.auth);
+  const { pathname } = useLocation();
 
   // Separate states for temporary and applied filters
   const [searchQuery, setSearchQuery] = useState("");
@@ -95,6 +96,10 @@ const DoctorDashboard = () => {
     gender: "all",
     ageRange: "all",
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top of the page
+  }, [pathname]);
 
   useEffect(() => {
     dispatch(fetchPatients(user.id));
@@ -202,23 +207,21 @@ const DoctorDashboard = () => {
     switch (tabValue) {
       case 1: // Abnormal Cases
         filteredPatients = filteredPatients.filter((patient) => {
-          const latestRecord = patient.medicalHistory?.[0];
-          return latestRecord?.xray?.result === "Abnormal";
+          return patient?.status === "Abnormal";
         });
         break;
 
       case 2: // Pending Analysis
         filteredPatients = filteredPatients.filter((patient) => {
-          const latestRecord = patient.medicalHistory?.[0];
-          return latestRecord?.xray?.result === "Pending";
+          return patient?.status === "Pending";
         });
         break;
 
       default: // Recent Cases (all)
         // Create a new array before sorting
         filteredPatients = [...filteredPatients].sort((a, b) => {
-          const dateA = new Date(a.medicalHistory?.[0]?.date_uploaded || 0);
-          const dateB = new Date(b.medicalHistory?.[0]?.date_uploaded || 0);
+          const dateA = new Date(a.medical_records?.[0]?.date_uploaded || 0);
+          const dateB = new Date(b.medical_records?.[0]?.date_uploaded || 0);
           return dateB - dateA;
         });
         break;
@@ -234,6 +237,10 @@ const DoctorDashboard = () => {
     abnormalCases: patients.filter((p) => p.status === "Abnormal").length,
     pendingAnalysis: patients.filter((p) => p.status === "Pending").length,
   };
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <PageContainer>

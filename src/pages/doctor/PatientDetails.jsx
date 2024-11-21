@@ -1,46 +1,41 @@
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import PatientDetails from "../../components/common/PatientDetails";
 import { fetchPatientById } from "../../redux/slices/doctorSlice";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 const DoctorPatientDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { patientId } = useParams();
+  const { pathname } = useLocation();
 
   const { selectedPatient, loading, error } = useSelector(
     (state) => state.doctor
   );
 
   useEffect(() => {
-    if (id) {
-      dispatch(fetchPatientById(id));
+    window.scrollTo(0, 0); // Scrolls to the top of the page
+  }, [pathname]);
+
+  useEffect(() => {
+    if (patientId) {
+      dispatch(fetchPatientById(patientId));
     }
-  }, [dispatch, id]);
+  }, [dispatch, patientId]);
 
   const handleBack = () => {
     navigate("/doctor/dashboard");
   };
 
   const handleXrayClick = (xrayId) => {
-    navigate(`/doctor/patient/${id}/xray/${xrayId}`);
+    navigate(`/doctor/patient/${patientId}/xray/${xrayId}`);
   };
 
   if (loading) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          minHeight: "60vh",
-        }}
-      >
-        <CircularProgress />
-      </Box>
-    );
+    return <LoadingSpinner />;
   }
 
   if (error) {

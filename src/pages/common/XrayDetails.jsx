@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Grid,
   Typography,
@@ -10,9 +10,18 @@ import {
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import StatusChip from "../../components/common/StatusChip";
 import { PageContainer } from "../../styles/components";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchPatientXray,
+  setPatientXray,
+} from "../../redux/slices/patientSlice";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
+import DoctorAnalysisView from "../doctor/DoctorAnalysis";
+import PatientAnalysis from "../patient/PatientAnalysis";
+import DoctorAnalysis from "../doctor/DoctorAnalysis";
 
 const ImageContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -43,170 +52,41 @@ const AnalysisCard = styled(Card)(({ theme }) => ({
   boxShadow: "none",
 }));
 
-const DoctorAnalysisView = ({ analysis }) => (
-  <Card>
-    <CardContent>
-      <Typography variant="h6" gutterBottom>
-        Doctor's Analysis
-      </Typography>
-      <Divider sx={{ mb: 3 }} />
-
-      {analysis.map((section, index) => (
-        <Box key={index} sx={{ mb: 4 }}>
-          <Typography variant="h6" color="primary.main" gutterBottom>
-            {section.title}
-          </Typography>
-
-          <Box sx={{ ml: 2 }}>
-            <Typography variant="subtitle1" gutterBottom>
-              Observations:
-            </Typography>
-            {section.observations.map((obs, idx) => (
-              <Box key={idx} sx={{ ml: 2, mb: 2 }}>
-                <Typography variant="body2" gutterBottom>
-                  • {obs}
-                </Typography>
-              </Box>
-            ))}
-
-            <Typography variant="subtitle1" gutterBottom>
-              Impression:
-            </Typography>
-            <Typography variant="body2" sx={{ ml: 2 }}>
-              {section.impression}
-            </Typography>
-          </Box>
-        </Box>
-      ))}
-    </CardContent>
-  </Card>
-);
-
-const PatientAnalysisView = ({ analysis }) => (
-  <Card>
-    <CardContent>
-      <Typography variant="h6" gutterBottom>
-        Understanding Your X-Ray Results
-      </Typography>
-      <Divider sx={{ mb: 3 }} />
-
-      {analysis.map((finding, index) => (
-        <Box key={index} sx={{ mb: 4 }}>
-          <Typography variant="h6" color="primary.main" gutterBottom>
-            {finding.title}
-          </Typography>
-
-          <Box sx={{ ml: 2 }}>
-            <Typography variant="subtitle1" gutterBottom>
-              What It Means:
-            </Typography>
-            <Typography variant="body2" sx={{ ml: 2, mb: 2 }}>
-              {finding.explanation}
-            </Typography>
-
-            <Typography variant="subtitle1" gutterBottom>
-              Next Steps:
-            </Typography>
-            <Typography variant="body2" sx={{ ml: 2 }}>
-              {finding.nextSteps}
-            </Typography>
-          </Box>
-        </Box>
-      ))}
-    </CardContent>
-  </Card>
-);
+const detectMimeType = (base64) => {
+  if (base64.startsWith("/9j/")) return "image/jpeg";
+  if (base64.startsWith("iVBORw0KGgo")) return "image/png";
+  if (base64.startsWith("R0lGOD")) return "image/gif";
+  if (base64.startsWith("UklGR")) return "image/webp";
+  return "image/jpeg"; // Default fallback
+};
 
 const XrayDetails = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const isDoctor = location.pathname.includes("/doctor/");
+  const dispatch = useDispatch();
+  const { xrayId, patientId: paramsPatientId } = useParams();
+  const { id: statePatientId } = useSelector((state) => state.auth.user);
+  const isDoctor = useSelector((state) => state.auth.userType === "doctor");
+  const { xray, loading } = useSelector((state) => state.patient);
+  const { pathname } = useLocation();
+
+  const patientId = isDoctor ? paramsPatientId : statePatientId;
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top of the page
+  }, [pathname]);
+
+  useEffect(() => {
+    dispatch(fetchPatientXray(patientId, xrayId));
+  }, [dispatch, patientId, xrayId]);
 
   const handleBack = () => {
-    if (isDoctor) {
-      navigate("/doctor/dashboard");
-    } else {
-      navigate("/patient/dashboard");
-    }
+    setPatientXray(null);
+    navigate(-1);
   };
 
-  // Example data - in real app, this would come from your state/API
-  const doctorAnalysis = [
-    {
-      title: "1. Cardiomegaly",
-      observations: [
-        "Label 1: Enlarged cardiac silhouette within coordinates (x_min=691, y_min=1375) to (x_max=1653, y_max=1831).",
-        "Label 4: Similar enlargement noted at coordinates (x_min=692, y_min=1375) to (x_max=1657, y_max=1799), indicating consistent findings across multiple observations.",
-        "Label 5: Additional sign of cardiomegaly at coordinates (x_min=689, y_min=1313) to (x_max=1666, y_max=1763), supporting the previous findings.",
-      ],
-      impression:
-        "Persistent and consistent cardiac enlargement, suggesting underlying conditions such as chronic hypertension or a cardiomyopathy. Further echocardiographic evaluation may be warranted to determine precise etiology and assess cardiac function.",
-    },
-    {
-      title: "2. Pleural Effusion",
-      observations: [
-        "Label 2: Presence of pleural effusion with coordinates specified as (x_min=1/89, y_min=1/29) to (X_max=18/5, y_max=1992).",
-      ],
-      impression:
-        "Mild to moderate pleural effusion, possibly secondary to congestive heart failure given concurrent cardiomegaly, though other etiologies (e.g., infection, malignancy) should be ruled out.",
-    },
-    {
-      title: "3. Pleural Thickening",
-      observations: [
-        "Label 3: Noted at coordinates (x_min=1/89, y_min=1/29) to (X_max=18/5, y_max=1992), coinciding with the region of pleural effusion.",
-      ],
-      impression:
-        "Likely chronic pleural reaction, potentially due to previous inflammatory processes. Correlation with clinical history and prior imaging could confirm whether this finding is stable or progressive.",
-    },
-    {
-      title: "4. Aortic Enlargement",
-      observations: [
-        "Label 6: Enlarged aortic region with coordinates (x_min=1052, y_min=715) to (x_max=1299, y_max=966).",
-      ],
-      impression:
-        "The enlargement in the aorta could indicate an aneurysmal change or vessel hypertrophy, often associated with chronic hypertension or age-related vascular degeneration. Recommend further imaging (CT angiography) if clinically indicated.",
-    },
-  ];
-
-  const patientAnalysis = [
-    {
-      title: "Heart Size (Cardiomegaly)",
-      explanation:
-        "The X-ray shows that your heart appears slightly larger than normal. This is known as cardiomegaly and may suggest your heart is working harder than usual, possibly due to high blood pressure or other conditions.",
-      nextSteps:
-        "The doctor might suggest additional tests, like an ultrasound of your heart, to understand why it's enlarged and if any treatment is needed.",
-    },
-    {
-      title: "Fluid in the Lungs (Pleural Effusion)",
-      explanation:
-        "There seems to be some extra fluid around your lungs. This could happen for various reasons, including heart issues (especially if the heart is enlarged) or infections.",
-      nextSteps:
-        "Your doctor will check to see if the fluid needs to be drained or if other tests are needed to understand its cause.",
-    },
-    {
-      title: "Thickening Around the Lungs (Pleural Thickening)",
-      explanation:
-        "This thickening could be from old inflammation or irritation of the lung lining. If you had a lung infection or exposure to irritants in the past, this may be a sign of that.",
-      nextSteps:
-        "Typically, this is just watched over time, so your doctor may compare this with past images to see if it's changed.",
-    },
-    {
-      title: "Slightly Enlarged Artery (Aortic Enlargement)",
-      explanation:
-        "The X-ray suggests that a major artery from your heart, called the aorta, might be slightly enlarged. This can happen with age or high blood pressure.",
-      nextSteps:
-        "Sometimes, doctors check this further with other types of scans to make sure the artery is safe and strong. Your doctor will let you know if any follow-up is needed here.",
-    },
-  ];
-
-  // Example record - in real app, this would come from your state/API
-  const record = {
-    xray: {
-      result: "Abnormal",
-      originalImage: "/images/original.png",
-      enhancedImage: "/images/enhanced.png",
-    },
-  };
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <PageContainer>
@@ -224,7 +104,7 @@ const XrayDetails = () => {
           </IconButton>
           <Typography variant="h4">X-Ray Analysis</Typography>
         </Box>
-        <StatusChip result={record.xray.result} />
+        <StatusChip result={xray?.status} />
       </Box>
 
       <Grid container spacing={3}>
@@ -236,7 +116,12 @@ const XrayDetails = () => {
               </Typography>
             </CardContent>
             <ImageContainer>
-              <XrayImage src={record.xray.originalImage} alt="Original X-ray" />
+              <XrayImage
+                src={`data:${detectMimeType(
+                  xray?.original_image || ""
+                )};base64,${xray?.original_image}`}
+                alt="Original X-ray"
+              />
             </ImageContainer>
           </XrayCard>
         </Grid>
@@ -249,7 +134,12 @@ const XrayDetails = () => {
               </Typography>
             </CardContent>
             <ImageContainer>
-              <XrayImage src={record.xray.enhancedImage} alt="Enhanced X-ray" />
+              <XrayImage
+                src={`data:${detectMimeType(
+                  xray?.labeled_image || ""
+                )};base64,${xray?.labeled_image}`}
+                alt="Labeled X-ray"
+              />
             </ImageContainer>
           </XrayCard>
         </Grid>
@@ -259,9 +149,9 @@ const XrayDetails = () => {
         <AnalysisCard>
           <CardContent>
             {isDoctor ? (
-              <DoctorAnalysisView analysis={doctorAnalysis} />
+              <DoctorAnalysis analysis={xray?.doctor_analysis} />
             ) : (
-              <PatientAnalysisView analysis={patientAnalysis} />
+              <PatientAnalysis analysis={xray?.patient_analysis} />
             )}
           </CardContent>
         </AnalysisCard>

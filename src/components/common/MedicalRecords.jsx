@@ -86,18 +86,6 @@ const MedicalRecords = ({
   title = "Medical Records",
   patientId,
 }) => {
-  const navigate = useNavigate();
-
-  const handleXrayClick = (record) => {
-    if (record?.xray?.hasXray) {
-      const path =
-        userType === "doctor"
-          ? `/doctor/patient/${patientId}/xray/${record.id}`
-          : `/patient/xray/${record.id}`;
-      navigate(path);
-    }
-  };
-
   if (!records.length) {
     return (
       <Card elevation={2}>
@@ -160,21 +148,6 @@ const MedicalRecords = ({
               </IconWrapper>
               <Typography variant="body2">{record.diagnosis}</Typography>
             </InfoRow>
-
-            {record.xray?.hasXray && (
-              <InfoRow>
-                <XrayContainer>
-                  <Tooltip title="View Chest X-ray Analysis">
-                    <XrayButton onClick={() => handleXrayClick(record)}>
-                      <MedicalServices sx={{ fontSize: 20 }} />
-                    </XrayButton>
-                  </Tooltip>
-                  <XrayText onClick={() => handleXrayClick(record)}>
-                    Chest X-ray Analysis Available
-                  </XrayText>
-                </XrayContainer>
-              </InfoRow>
-            )}
 
             <InfoRow>
               <IconWrapper>

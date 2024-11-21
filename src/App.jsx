@@ -34,10 +34,11 @@ const ProtectedRoute = ({ children, allowedUserType }) => {
 
 const App = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
-    // Check if the token is expired on app load
-    if (isTokenExpired()) {
-      dispatch(logout()); // Log out the user if token expired
+    const token = localStorage.getItem("access_token");
+    if (token && isTokenExpired(token)) {
+      dispatch(logout()); // Log the user out if the token is expired
     }
   }, [dispatch]);
 
@@ -67,7 +68,7 @@ const App = () => {
             }
           />
           <Route
-            path="/doctor/patient/:id"
+            path="/doctor/patient/:patientId"
             element={
               <ProtectedRoute allowedUserType="doctor">
                 <PatientDetails />
@@ -75,8 +76,12 @@ const App = () => {
             }
           />
           <Route
-            path="/doctor/patient/:patientId/xray/:id"
-            element={<XrayDetails />}
+            path="/doctor/patient/:patientId/xray/:xrayId"
+            element={
+              <ProtectedRoute allowedUserType="doctor">
+                <XrayDetails />
+              </ProtectedRoute>
+            }
           />
 
           {/* Patient Routes */}
@@ -89,14 +94,13 @@ const App = () => {
             }
           />
           <Route
-            path="/patient/xray/:id"
+            path="/patient/xray/:xrayId"
             element={
               <ProtectedRoute allowedUserType="patient">
                 <XrayDetails />
               </ProtectedRoute>
             }
           />
-          <Route path="/patient/xray/:id" element={<XrayDetails />} />
 
           {/* Redirect root to login */}
           <Route path="/" element={<Navigate to="/login" replace />} />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Container,
   Paper,
@@ -10,6 +10,7 @@ import {
 import { styled } from "@mui/material/styles";
 import LoginForm from "../../components/auth/LoginForm";
 import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";
+import { useLocation } from "react-router-dom";
 
 const LoginContainer = styled(Container)(({ theme }) => ({
   minHeight: "100vh",
@@ -79,6 +80,11 @@ const IconWrapper = styled(Box)(({ theme }) => ({
 const Login = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top of the page
+  }, [pathname]);
 
   return (
     <LoginContainer maxWidth={false}>

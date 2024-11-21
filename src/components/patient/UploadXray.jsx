@@ -10,6 +10,8 @@ import {
   styled,
 } from "@mui/material";
 import { CloudUpload, Close as CloseIcon } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { uploadPatientXray } from "../../redux/slices/patientSlice";
 
 // Create styled components
 const HiddenInput = styled("input")({
@@ -33,11 +35,12 @@ const StyledPreviewImage = styled("img")({
 });
 
 const UploadXray = ({ onUploadSuccess, sx = {} }) => {
+  const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
+  const { xrayLoading } = useSelector((state) => state.patient);
 
   const handleFileSelect = (event) => {
     const file = event.target.files[0];
@@ -57,35 +60,13 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
     }
   };
 
-  const handleUpload = async () => {
+  const handleUpload = () => {
     if (!selectedFile) return;
-
-    setLoading(true);
-    setError(null);
-
-    try {
-      const formData = new FormData();
-      formData.append("xray", selectedFile);
-
-      // Replace with your actual API endpoint
-      const response = await fetch("/api/patient/upload-xray", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to upload X-ray");
-      }
-
-      const data = await response.json();
-      onUploadSuccess(data);
+    dispatch(uploadPatientXray(selectedFile)).then(() => {
+      // Clear file and preview after successful upload
       setSelectedFile(null);
       setPreview(null);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+    });
   };
 
   return (
@@ -174,10 +155,10 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
           <Button
             variant="contained"
             onClick={handleUpload}
-            disabled={loading}
+            disabled={xrayLoading}
             fullWidth
           >
-            {loading ? (
+            {xrayLoading ? (
               <CircularProgress size={24} color="inherit" />
             ) : (
               "Upload X-ray"

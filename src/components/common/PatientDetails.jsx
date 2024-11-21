@@ -38,6 +38,7 @@ import { styled } from "@mui/material/styles";
 import StatusChip from "./StatusChip";
 import { PageContainer } from "../../styles/components";
 import UploadXray from "../patient/UploadXray";
+import LoadingSpinner from "./LoadingSpinner";
 
 const InfoCard = styled(Card)(({ theme }) => ({
   height: "100%",
@@ -113,23 +114,6 @@ const PatientDetails = ({
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  if (!patientData) {
-    return (
-      <PageContainer>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            minHeight: "60vh",
-          }}
-        >
-          <Typography>Loading patient data...</Typography>
-        </Box>
-      </PageContainer>
-    );
-  }
-
   const latestRecord = patientData?.medical_records?.[0];
 
   return (
@@ -165,15 +149,12 @@ const PatientDetails = ({
                 variant={isMobile ? "h6" : "h5"}
                 sx={{ mt: 2, mb: 1 }}
               >
-                {patientData.name}
+                {patientData?.name}
               </Typography>
-              <Typography variant="body2" color="text.secondary" gutterBottom>
-                Patient ID: {patientData.id}
-              </Typography>
-              <StatusChip
-                result={latestRecord?.xray?.result || "No X-ray"}
+              {/* <StatusChip
+                result={latestRecord?.result || "No X-ray"}
                 size={isMobile ? "small" : "medium"}
-              />
+              /> */}
               <Divider sx={{ my: 3 }} />
 
               {/* Basic Information */}
@@ -184,33 +165,32 @@ const PatientDetails = ({
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                   <CalendarToday fontSize="small" color="action" />
                   <Typography variant="body2" align="left">
-                    Age: {patientData.age} years
+                    Age: {patientData?.age} years
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                   <Person fontSize="small" color="action" />
                   <Typography variant="body2" align="left">
-                    Gender: {patientData.gender}
+                    Gender: {patientData?.gender}
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                   <Email fontSize="small" color="action" />
                   <Typography variant="body2" align="left">
-                    {patientData.email}
+                    {patientData?.email}
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                   <Phone fontSize="small" color="action" />
                   <Typography variant="body2" align="left">
-                    {patientData.phone}
+                    {patientData?.phone}
                   </Typography>
                 </Box>
               </Box>
 
-              <Divider sx={{ my: 3 }} />
-
               {/* Medical Summary */}
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              {/* <Divider sx={{ my: 3 }} /> */}
+              {/* <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                 <Typography variant="subtitle2" color="primary" align="left">
                   Medical Summary
                 </Typography>
@@ -231,11 +211,11 @@ const PatientDetails = ({
                       : "N/A"}
                   </Typography>
                 </Box>
-              </Box>
+              </Box> */}
 
               {/* Risk Factors */}
-              {patientData.risk_factors &&
-                patientData.risk_factors.length > 0 && (
+              {patientData?.risk_factors &&
+                patientData?.risk_factors.length > 0 && (
                   <>
                     <Divider sx={{ my: 3 }} />
                     <Box
@@ -248,7 +228,7 @@ const PatientDetails = ({
                       >
                         Risk Factors
                       </Typography>
-                      {patientData.risk_factors.map((risk, index) => (
+                      {patientData?.risk_factors.map((risk, index) => (
                         <Box
                           key={index}
                           sx={{ display: "flex", alignItems: "center", gap: 1 }}
@@ -285,7 +265,7 @@ const PatientDetails = ({
                     <Typography className="stat-title">Total X-rays</Typography>
                   </Box>
                   <Typography className="stat-value">
-                    {patientData.medical_records?.length || 0}
+                    {patientData?.medical_records?.length || 0}
                   </Typography>
                 </CardContent>
               </StatsCard>
@@ -309,7 +289,9 @@ const PatientDetails = ({
                   </Box>
                   <Typography className="stat-value">
                     {latestRecord
-                      ? new Date(latestRecord.date).toLocaleDateString()
+                      ? new Date(
+                          latestRecord.date_uploaded
+                        ).toLocaleDateString()
                       : "N/A"}
                   </Typography>
                 </CardContent>
@@ -333,8 +315,8 @@ const PatientDetails = ({
                     <Typography className="stat-title">Next Checkup</Typography>
                   </Box>
                   <Typography className="stat-value">
-                    {patientData.nextCheckup
-                      ? new Date(patientData.nextCheckup).toLocaleDateString()
+                    {patientData?.nextCheckup
+                      ? new Date(patientData?.nextCheckup).toLocaleDateString()
                       : "Not Scheduled"}
                   </Typography>
                 </CardContent>
@@ -408,14 +390,14 @@ const PatientDetails = ({
                   },
                 }}
               >
-                {patientData.medical_records
+                {patientData?.medical_records
                   ?.slice(0, 3)
                   .map((record, index) => (
                     <TimelineItem key={record.id}>
                       <TimelineSeparator>
                         <TimelineDot
                           color={
-                            record.result === "Normal" ? "success" : "error"
+                            record.status === "Normal" ? "success" : "error"
                           }
                           sx={{
                             my: 0,
@@ -439,7 +421,7 @@ const PatientDetails = ({
                         <TimelineCard
                           onClick={(e) => {
                             e.stopPropagation();
-                            onXrayClick(record.id);
+                            onXrayClick(record.xray_image_id);
                           }}
                         >
                           <Box
@@ -458,7 +440,7 @@ const PatientDetails = ({
                               ).toLocaleDateString()}
                             </Typography>
                             <StatusChip
-                              result={record.result}
+                              result={record.status}
                               size="small"
                               sx={{
                                 alignSelf: { xs: "flex-start", sm: "center" },
@@ -494,7 +476,7 @@ const PatientDetails = ({
           </Card>
 
           {/* Health Recommendations */}
-          <Card
+          {/* <Card
             sx={{
               mt: 3,
               border: `1px solid ${theme.palette.divider}`,
@@ -523,7 +505,7 @@ const PatientDetails = ({
                 ))}
               </Grid>
             </CardContent>
-          </Card>
+          </Card> */}
         </Grid>
       </Grid>
     </PageContainer>

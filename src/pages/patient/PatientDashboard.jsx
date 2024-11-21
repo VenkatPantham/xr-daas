@@ -1,15 +1,19 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, CircularProgress } from "@mui/material";
 import PatientDetails from "../../components/common/PatientDetails";
 import { fetchPatientData } from "../../redux/slices/patientSlice";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 const PatientDashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const { pathname } = useLocation();
   const { data: patientData, loading } = useSelector((state) => state.patient);
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top of the page
+  }, [pathname]);
 
   useEffect(() => {
     dispatch(fetchPatientData());
@@ -24,18 +28,7 @@ const PatientDashboard = () => {
   };
 
   if (loading) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          minHeight: "60vh",
-        }}
-      >
-        <CircularProgress />
-      </Box>
-    );
+    return <LoadingSpinner />;
   }
 
   return (
