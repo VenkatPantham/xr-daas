@@ -1,0 +1,11 @@
+Flask
+Flask-PyMongo
+Flask-JWT-Extended
+python-dotenv
+Werkzeug
+pymongo
+flask-cors
+Pillow
+openai
+requests
+pandas
