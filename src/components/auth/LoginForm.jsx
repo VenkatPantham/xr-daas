@@ -207,34 +207,9 @@ const LoginForm = () => {
         <SubmitButton type="submit" variant="contained" fullWidth size="large">
           Sign In
         </SubmitButton>
-
-        {/* <Box sx={{ mt: 2 }}>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            align="center"
-            gutterBottom
-          >
-            Demo Credentials
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 0.5,
-              "& > *": {
-                fontSize: "0.875rem",
-                color: "text.secondary",
-                textAlign: "center",
-              },
-            }}
-          >
-            <Typography>Doctor: doctor@example.com / password</Typography>
-            <Typography>Patient: patient@example.com / password</Typography>
-          </Box>
-        </Box> */}
       </Form>
       <ToastNotification
+        open={toast.open}
         severity={toast.severity}
         message={toast.message}
         closeToast={closeToast}

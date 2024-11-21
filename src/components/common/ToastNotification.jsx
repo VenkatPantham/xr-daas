@@ -1,9 +1,9 @@
 import React from "react";
 import { Alert, Snackbar } from "@mui/material";
 
-const ToastNotification = ({ severity, message, closeToast }) => (
+const ToastNotification = ({ open, severity, message, closeToast }) => (
   <Snackbar
-    open={Boolean(message)}
+    open={open}
     autoHideDuration={5000}
     onClose={closeToast}
     anchorOrigin={{ vertical: "top", horizontal: "center" }}

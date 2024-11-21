@@ -166,7 +166,7 @@ const DoctorDashboard = () => {
       // Applied filters (only after clicking Apply)
       const matchesStatus =
         appliedFilters.status === "all" ||
-        patient.latestXray?.status === appliedFilters.status;
+        patient.status === appliedFilters.status;
 
       const matchesGender =
         appliedFilters.gender === "all" ||
@@ -365,12 +365,6 @@ const DoctorDashboard = () => {
                 <Typography variant="body2" color="text.secondary" gutterBottom>
                   Gender: {patient.gender}
                 </Typography>
-                {patient.latestXray && (
-                  <Typography variant="body2" color="text.secondary">
-                    Last X-ray:{" "}
-                    {new Date(patient.latestXray.date).toLocaleDateString()}
-                  </Typography>
-                )}
               </CardContent>
             </PatientCard>
           </Grid>

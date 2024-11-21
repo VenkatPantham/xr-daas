@@ -149,10 +149,10 @@ const PatientDetails = ({
               >
                 {patientData?.name}
               </Typography>
-              {/* <StatusChip
-                result={latestRecord?.result || "No X-ray"}
+              <StatusChip
+                result={latestRecord?.status || "No X-ray"}
                 size={isMobile ? "small" : "medium"}
-              /> */}
+              />
               <Divider sx={{ my: 3 }} />
 
               {/* Basic Information */}

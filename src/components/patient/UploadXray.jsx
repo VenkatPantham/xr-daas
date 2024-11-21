@@ -221,6 +221,7 @@ const UploadXray = ({ onUploadSuccess, sx = {} }) => {
         </Box>
       </Dialog>
       <ToastNotification
+        open={toast.open}
         severity={toast.severity}
         message={toast.message}
         closeToast={closeToast}
