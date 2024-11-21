@@ -18,8 +18,6 @@ def process_xray_upload(patient_id, file):
     else:
         # Fall back to Roboflow API if labels are not found in CSV
         predictions = send_to_roboflow(file_path).get('predictions', [])
-        if not predictions:
-            raise Exception("Failed to get predictions from Roboflow API")
 
     # Draw bounding boxes on the image
     labeled_image_path = draw_boxes(file_path, predictions, upload_folder)
