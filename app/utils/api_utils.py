@@ -1,7 +1,7 @@
 import os
 import requests
 
-ROBOFLOW_API_URL = "https://detect.roboflow.com/chest-xray-yolo/6"
+ROBOFLOW_API_URL = os.getenv("ROBOFLOW_API_URL")
 ROBOFLOW_API_KEY = os.getenv("ROBOFLOW_API_KEY")
 
 def send_to_roboflow(image_path):
