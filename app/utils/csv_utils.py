@@ -13,6 +13,7 @@ def get_labels_from_csv(image_filename):
     Retrieve labels for the given image filename from the CSV.
     """
     try:
+        a = 0
         # Load the CSV into a DataFrame
         if not os.path.exists(TRAIN_CSV_PATH):
             raise FileNotFoundError(f"CSV file not found at {TRAIN_CSV_PATH}")
