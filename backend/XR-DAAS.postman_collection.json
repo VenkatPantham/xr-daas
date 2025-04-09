@@ -1,0 +1,939 @@
+{
+	"info": {
+		"_postman_id": "2c65399d-6199-40f3-becf-93c545bed1a5",
+		"name": "XR-DAAS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17839744",
+		"_collection_link": "https://matrixintel.postman.co/workspace/Sage-Intacct~de7f916d-813d-4fb3-a439-334cad4fc2a7/collection/17839744-2c65399d-6199-40f3-becf-93c545bed1a5?action=share&source=collection_link&creator=17839744"
+	},
+	"item": [
+		{
+			"name": "Doctor",
+			"item": [
+				{
+					"name": "Register Doctor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Surya Theja\",\n    \"email\": \"surya@gmail.com\",\n    \"password\": \"password\",\n    \"specialty\": \"Pediatrics\",\n    \"hospital_affiliation\": \"Medanta Hospital\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/doctor/register",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"doctor",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register Doctor",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Surya Theja\",\n    \"email\": \"surya@gmail.com\",\n    \"password\": \"password\",\n    \"specialty\": \"Pediatrics\",\n    \"hospital_affiliation\": \"Medanta Hospital\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/doctor/register",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"doctor",
+										"register"
+									]
+								}
+							},
+							"status": "CREATED",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 17:39:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"doctor_id\": \"673f704cbd066991e45c8642\",\n    \"message\": \"Doctor created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login Doctor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"venkat@gmail.com\",\n    \"password\":\"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/login/doctor",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"login",
+								"doctor"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login Doctor",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"venkat@gmail.com\",\n    \"password\":\"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/login/doctor",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"login",
+										"doctor"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 17:36:27 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "465"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"email\": \"venkat@gmail.com\",\n    \"id\": \"673d20e2c34fae4e1e6e7964\",\n    \"name\": \"Dr. Venkat\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczMjIxMDU4NywianRpIjoiZTAwMzdkYjgtOTk2OC00ZWU4LWIwYTItMTYyNTkzNjY4NTc2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjY3M2QyMGUyYzM0ZmFlNGUxZTZlNzk2NCIsIm5iZiI6MTczMjIxMDU4NywiY3NyZiI6IjNiYmNjNGU0LTcwOTctNDM0NC05ZjM5LWRkOGY5NmVmOTkwYyIsImV4cCI6MTczMjIxNDE4N30.zZBF7YkGLanESE2_MNHQrFMKpnoZMWymgq8oDd1VqoI\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Patients",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczMjIxMDAzNCwianRpIjoiYjZlYzA5ZmUtYzM4ZS00NTQyLWEyODEtZjZhZjk1YzdhMjQxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjY3M2QyMGUyYzM0ZmFlNGUxZTZlNzk2NCIsIm5iZiI6MTczMjIxMDAzNCwiY3NyZiI6IjdkNjQ5NjFiLWYyMTctNDZiYy1hZjQyLTk2N2VjMDk0NTdmNCIsImV4cCI6MTczMjIxMzYzNH0.RDZSo2ivyXyLZvOB45B1EcRQPJsJ9SAhwzw61ULg6rg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/doctor/patients",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"doctor",
+								"patients"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Patients",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/doctor/patients",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"doctor",
+										"patients"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 17:31:02 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "689"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"age\": 25,\n        \"gender\": \"Male\",\n        \"id\": \"673d23d6091a36737bf3ab3c\",\n        \"name\": \"Venkat Pantham\",\n        \"status\": \"Abnormal\"\n    },\n    {\n        \"age\": 30,\n        \"gender\": \"Female\",\n        \"id\": \"673d23d6091a36737bf3ab3d\",\n        \"name\": \"Anita Sharma\",\n        \"status\": \"Pending\"\n    },\n    {\n        \"age\": 40,\n        \"gender\": \"Male\",\n        \"id\": \"673d23d6091a36737bf3ab41\",\n        \"name\": \"Sanjay Kumar\",\n        \"status\": \"Abnormal\"\n    },\n    {\n        \"age\": 33,\n        \"gender\": \"Female\",\n        \"id\": \"673d23d6091a36737bf3ab42\",\n        \"name\": \"Maya Iyer\",\n        \"status\": \"Pending\"\n    },\n    {\n        \"age\": 50,\n        \"gender\": \"Male\",\n        \"id\": \"673d23d6091a36737bf3ab43\",\n        \"name\": \"Rahul Sharma\",\n        \"status\": \"Abnormal\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Patient Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczMjIxMDAzNCwianRpIjoiYjZlYzA5ZmUtYzM4ZS00NTQyLWEyODEtZjZhZjk1YzdhMjQxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjY3M2QyMGUyYzM0ZmFlNGUxZTZlNzk2NCIsIm5iZiI6MTczMjIxMDAzNCwiY3NyZiI6IjdkNjQ5NjFiLWYyMTctNDZiYy1hZjQyLTk2N2VjMDk0NTdmNCIsImV4cCI6MTczMjIxMzYzNH0.RDZSo2ivyXyLZvOB45B1EcRQPJsJ9SAhwzw61ULg6rg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/doctor/patient/673d23d6091a36737bf3ab3c",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"doctor",
+								"patient",
+								"673d23d6091a36737bf3ab3c"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Patient Details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/doctor/patient/673d23d6091a36737bf3ab3c",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"doctor",
+										"patient",
+										"673d23d6091a36737bf3ab3c"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 17:31:20 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3252"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"age\": 25,\n    \"email\": \"venkat@gmail.com\",\n    \"gender\": \"Male\",\n    \"id\": \"673d23d6091a36737bf3ab3c\",\n    \"medical_records\": [\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 16:39:14 GMT\",\n            \"diagnosis\": \"Cardiomegaly, Aortic Enlargement\",\n            \"id\": \"673f6232630f33af7052eb63\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f6232630f33af7052eb62\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 16:13:09 GMT\",\n            \"diagnosis\": \"Nodule/Mass\",\n            \"id\": \"673f5c15438742c9e4c626f3\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f5c15438742c9e4c626f2\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 16:12:03 GMT\",\n            \"diagnosis\": \"Aortic Enlargement, Cardiomegaly\",\n            \"id\": \"673f5bd3438742c9e4c626f1\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f5bd3438742c9e4c626f0\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 16:06:49 GMT\",\n            \"diagnosis\": \"NoduleMass\",\n            \"id\": \"673f5a9a438742c9e4c626ef\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f5a99438742c9e4c626ee\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 16:03:50 GMT\",\n            \"diagnosis\": \"NoduleMass\",\n            \"id\": \"673f59e6438742c9e4c626ed\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f59e6438742c9e4c626ec\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 15:42:21 GMT\",\n            \"diagnosis\": \"Nodule/Mass\",\n            \"id\": \"673f54dd630f33af7052eb61\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f54dd630f33af7052eb60\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 15:40:19 GMT\",\n            \"diagnosis\": \"NoduleMass\",\n            \"id\": \"673f5463630f33af7052eb5f\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f5463630f33af7052eb5e\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 15:39:47 GMT\",\n            \"diagnosis\": \"Cardiomegaly, Aortic enlargement\",\n            \"id\": \"673f5443630f33af7052eb5d\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f5443630f33af7052eb5c\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 15:35:45 GMT\",\n            \"diagnosis\": \"NoduleMass\",\n            \"id\": \"673f535248b8e74b1034d614\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f535148b8e74b1034d613\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 15:15:07 GMT\",\n            \"diagnosis\": \"\",\n            \"id\": \"673f4e7bc188de2dd1a3f2e7\",\n            \"status\": \"Normal\",\n            \"xray_image_id\": \"673f4e7bc188de2dd1a3f2e6\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 15:10:08 GMT\",\n            \"diagnosis\": \"Pleural Effusion, Aortic Enlargement\",\n            \"id\": \"673f4d50c188de2dd1a3f2e5\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f4d50c188de2dd1a3f2e4\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 04:05:13 GMT\",\n            \"diagnosis\": \"Aortic Enlargement, Cardiomegaly\",\n            \"id\": \"673eb179cfe35d38539b7017\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673eb179cfe35d38539b7016\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 02:19:40 GMT\",\n            \"diagnosis\": \"Cardiomegaly, Aortic Enlargement\",\n            \"id\": \"673e98bcc81637e56fc74b76\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673e98bcc81637e56fc74b75\"\n        }\n    ],\n    \"name\": \"Venkat Pantham\",\n    \"phone\": \"+1234567890\",\n    \"risk_factors\": [\n        \"Smoker\",\n        \"Low Immunity\"\n    ],\n    \"status\": \"Abnormal\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Patient Xray",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczMjIxMDAzNCwianRpIjoiYjZlYzA5ZmUtYzM4ZS00NTQyLWEyODEtZjZhZjk1YzdhMjQxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjY3M2QyMGUyYzM0ZmFlNGUxZTZlNzk2NCIsIm5iZiI6MTczMjIxMDAzNCwiY3NyZiI6IjdkNjQ5NjFiLWYyMTctNDZiYy1hZjQyLTk2N2VjMDk0NTdmNCIsImV4cCI6MTczMjIxMzYzNH0.RDZSo2ivyXyLZvOB45B1EcRQPJsJ9SAhwzw61ULg6rg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/doctor/patient/673d23d6091a36737bf3ab3c/xray/673f6232630f33af7052eb62",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"doctor",
+								"patient",
+								"673d23d6091a36737bf3ab3c",
+								"xray",
+								"673f6232630f33af7052eb62"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Patient Details Copy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/doctor/patient/673d23d6091a36737bf3ab3c/xray/673f6232630f33af7052eb62",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"doctor",
+										"patient",
+										"673d23d6091a36737bf3ab3c",
+										"xray",
+										"673f6232630f33af7052eb62"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 17:31:37 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "35680"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"doctor_analysis\": {\n        \"abnormalities\": [\n            {\n                \"clinical_implications\": [\n                    \"Potential heart failure\",\n                    \"Increased cardiac workload\"\n                ],\n                \"confidence_interpretation\": \"The model has moderate confidence in detecting cardiomegaly. While not highly certain, the finding should be considered in the clinical context.\",\n                \"confidence_score\": \"76.74%\",\n                \"description\": \"An enlargement of the heart, specifically the cardiac silhouette appears larger than normal on the chest X-ray.\",\n                \"name\": \"Cardiomegaly\",\n                \"potential_causes\": [\n                    \"Hypertension\",\n                    \"Heart valve disease\"\n                ],\n                \"recommendations\": [\n                    {\n                        \"reason\": \"To evaluate the heart's structure and function in more detail.\",\n                        \"test_or_imaging\": \"Echocardiogram\"\n                    },\n                    {\n                        \"reason\": \"For comprehensive assessment and management of potential cardiac conditions.\",\n                        \"specialist_referral\": \"Cardiologist\"\n                    }\n                ],\n                \"severity\": \"Moderate\",\n                \"urgency\": \"Low\"\n            },\n            {\n                \"clinical_implications\": [\n                    \"Risk of aortic rupture\",\n                    \"Potential for thromboembolic events\"\n                ],\n                \"confidence_interpretation\": \"The model has moderate confidence in detecting aortic enlargement. Further clinical correlation and imaging are recommended to confirm the finding.\",\n                \"confidence_score\": \"68.04%\",\n                \"description\": \"An enlargement of the aorta, indicating that the aortic diameter exceeds normal measurements on the chest X-ray.\",\n                \"name\": \"Aortic Enlargement\",\n                \"potential_causes\": [\n                    \"Aortic aneurysm\",\n                    \"Aortic dissection\"\n                ],\n                \"recommendations\": [\n                    {\n                        \"reason\": \"To obtain detailed images of the aorta and assess the extent of enlargement.\",\n                        \"test_or_imaging\": \"CT Angiography\"\n                    },\n                    {\n                        \"reason\": \"For evaluation and management of aortic abnormalities.\",\n                        \"specialist_referral\": \"Vascular Surgeon\"\n                    }\n                ],\n                \"severity\": \"Moderate\",\n                \"urgency\": \"Low\"\n            }\n        ],\n        \"analysis_for_doctor\": {\n            \"summary\": \"The chest X-ray reveals two detected abnormalities: Cardiomegaly and Aortic enlargement. Both findings have moderate confidence scores and may require further evaluation to determine their clinical significance.\",\n            \"total_abnormalities\": \"2\"\n        },\n        \"overall_conclusions\": {\n            \"diagnostic_confidence\": \"Moderate\",\n            \"follow_up_actions\": [\n                \"Order additional imaging studies as recommended.\",\n                \"Refer the patient to appropriate specialists for further evaluation.\"\n            ],\n            \"further_review_needed\": \"Yes\"\n        }\n    },\n    \"labeled_image\": \"/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gODIK/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8AAEQgBBwEsAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A8Co4pM0oUseATQAnFKAScAZqdLYnrz7VbS3A7YoAorAx68VMtrnoM1pxWpYjArd0zQVu2lEkjIIot52oGJ5AwASB3z17UAcoLInsKkWy9v0rs7rwzJa2M12CZYo5zGGVDtZAcBw2SMEkDAJ57kc1KnhyEtbIbvDzRiRhiPCDYX7yA9gMkAc5z0yAcclgMfcH5VPHYKR9wflXZP4cjgt7iRrr/VFAqhY8klC2DmTHYdCev4UkOiRfbYLVpphI0gSQi3yFJ7g7hkA8EnHqM0AcoNOXH+rH/fNP+wxjIEak/Sum/syaSQiGCdozjaWi2kj6AnH5mrUehXAXJtHx7rQByaWUZOPLX8hWrbWkA2hoIj9UFbH9k+X96FlPupFOSzAbIGcUAV4rS13AfZocD1jH+FX47C0brawD/tmP8Kfb2bOxPAHqa0oIlRWBAPI5xj8KAK0GnWgYEWkB+sY/wrYstKsZHAaytgCO8Q/wplsY1cZUEHg461qwyxn5UAAx0PWgDGOmaZBffNY27gNkgxjn9Kmex0+dogbG1BB5HlLkg9OwqS4tJZdT2mMYboS1Iun+VdqYHDITn5vXvQBZbRdPMJ22NsWHX90OP0rIu9MtEBH2O2HPaIf4V0pSZIyWCgeoNZtzscYIDEc5PagDnm020IP+hwfhGP8ACqE9hbKxH2WDB/6Zj/CumQ5JOCfaqk9qJ2d8gEknGOKAOSu7C2AOLeIY9EFZUlhEf+WKD6KK7J7IYIcZPvVKSwQMcD8qAOTewjB5iT/vkUxtOjdciNPwUV1n9kSyD5YmOfRaafDl6c5RUHUEnH8qAONfTkB/1YH4VA9gMcIPyruD4ffbh7lAfZSaZ/wjp/5+UP8A2zIoA4F7ID+EflXVeAvAK+KbyaW7ZksLbG/ZwXY9FB7DAyT9PXIsz+HHXOZU+uP/AK9ehfC5odPgu9MkmjMsknnRgcFhgAjnuMA/iaAGj4e+FLn7RZR6VGGtyEdgWBBIBHzZyTgg/iK8k8c+DH8J6ukSO0lncKXgduowcFT6kZHPoRX0dp9pcWs9ys0KN588kxnR8g5OFBBAIIUAcZHFeXfF+7hv72xsYSHa0EjSkc7S2MD6gDJ+ooA8YMDDpzUZUjqMVtvaSKuTG2PXacVVeDPQUAZtHFWXgx0GKgMbA4xQBLHASQT+VXI7fgYFWre0JI4zW7p9nEq7njQvnjd0H4dKAMyw0a7vT+4hJUdXJwo+pPFb1t4UiBH2nUYlbuI0LY/HitW3MTbRLMxA4AQZA+g4H5VpwGx3KI1cN2LDrQBnJ4UtotjLdswPIOzGfwNSjSBEZEWVwGADccEZBx+YB/CtsQgAfOeOeRUjgnaVAJHGcUAZMFhdqFEcpZQMbckADJOPTrk/WrogmZQJYRkDG4AAkYxjI5xg4xnpVkGYN8sgRu4IGDUyvcurCQgj0GBmgCGOLERjIUqcZD4PQEDGemAcVKkAyoDhAMchsdOB+Q4HoOBTJbYnAjLKffmlt9MkeUCSVz7Ac0AakUEcVioDrjkDn8BT0hB6EfgarXMKeX5ajAUDioordgRtJB9jQBbmtnHIYj+VCWBkUeZGr/gM1PbxygAsxb0B5xVqa8htYC82RjjAGaAKn9nQhcGNFA7Diojp0BYbJCD7HI+lRS67byNiJSWPGXFV01GYuSwwB7DFAFw2CqcgjP0xUsVqFbcSQM4/Glt7kzhSQpH5EVcdQNoQggDJ4zzQBmX1wIZ1k4BAABPaq9pexO6gA9cknoa0ruyjmZcxkkkcZOKQWduJkEduFXJBIJ5xQBdAWdWBPAGcCqEtohbgEA9D1JrXihjjwQh5yCM1XuUjiJLHgDIBoAyjZx7WG5uewFPSwtyv3mPrniql5qgGUQ7B0461TTVZIxkyEKPWgDXbTIiOIgwPq2aiNgI2ysaj6DkVFZa/C8wjPzEnBxWu1wkynyccdQeooAzTCQOeBjqaZcvB9nDlwcHBCjNOu4Hb5txYenpUVvArwyRuOD6f59qAMiW9to2OIXPoT3qIXlux5QjPqtaFxpcvOFDr6gj+Xaqw0uQYLEBc9uTQBWm8mRBgc5x8oz+lRCzhDiTzJY2ByCFwQe2Dng10lvpKxxYGQzDk4ziqNxYyQsRIC2DgEdPzoAifWdRMBhOqXjpjBy+CfxAB/Ws/yoIFUpaRHuWK5JJ5zk5rQFtk88/hQ9ooQvJ8qDmgDPnurmUDbcRouP8AVyYAx6elYN/p8Ep3mCHcepjAwfyrWuRliIo1VR3IBJrPnilYHDlT6qMfyoA5G9sBHI20YX09KzmtTnvXVT2pJIckn1NUHsvnPFAFy0ssY4/SteGyB2jHFT2tpjHFasNt0GOaAKkFnkgAZ+lX49OkPJjP4CtS1twq/KOfXHJrSigycYoAy7RShEMwOD0J6itE2DbchSR61fFuu3BAPvVuCLEBDkEZwPXFAGANOkc4IAHqSKt2+nCJgIlyx6nqa1YraMMWLEAckkcCkkvo4MpbR4zwXPJP0oAzry0htpBJMQhK58sckn6dqrLdMx2Rx7EPXHJP1NLdBpZmdiSxPU1LbWxOARgdSaAGLATuH5+1WEgVFBPAHc96tCIAE4wo5NYer6kEUhTtUcZHU/SgCzPfpExWMEn1FZd1qKOjRvIApGCByTWBc6qzgrkgH07/AFrMZ5nbORtz0zQBfuYYWdjFJK5HPIHP61YsLpZlCbyHHHPU/jVKOJwVdmYE4xgYxVpAhKgFgfXA7UAdVaFlVQVBI7561sWjqow3J65rlIlli2kSHoORxXR6dITEPMAJ7HPUUAaFzuIDKASB61BG7vMpMbDmrJQMyhTgn1qZIyJlxnHagAJO1iAcgVh6gZGBww/E1vXLBVwSQK5PVb1UfC4J9M0AZV+GVcIQzep5ArPSJnOZgrt2B6UXN7KcADgdAFz+tV90jK2CxyCQM8igDVi+zwDKxBGI5xmp4rtg4ZHIbtzXOGaRIiwdgQCB16+hqKDVpCwWRQQe/QigD0K0u0uUCSYSXH4GnvAVYkDB7iuWsbwuwYNuX07iuvspPtVvnOWXHNAFYnAJYHI7impMCcOoYeo4NaEsAKtgcnrxWc8RVjkHigDXhWG5QYl2k/3qiurVo8BQT6kd6zk3AcEjFaFlekkRTnK5wrEcj/61ADIrQspLKNvU5FUbuz+0nA+RAeAO9dAxZCwOMYxis50IbgHFAHPyaZEDg7s/Ws+50wAExtn2NdVPBujLHAPqazJ4wQRkn8KAORuLQgkEYIrPe3+c8V1V7b8AkdQRWTJB8/SgDTgtwoGRWpZ2weZBimwxDPTpW3p9rsUzsOAMKPWgCOG32dsAVfgVTkEfjUZIPGORUkJAbHqKAJxEM9OKlCEgAD6U9IjgHBP0qyAEXtu9KAM2/JRVhHAxlsdyao+Vha0blSZiSM5qJ4sYoAprEN2SMmrsEXGABSpF7VMxEETMR+HqfSgChqk6wQNHnGR+dcLqIkeRmc5HbHp9O1dFqNx5szE8t6dhXLX935ZYRkFj1bqB9KAMm6kEXU7VI/E1ltftE37skg/SrFyWlLEqW9Sf8aom1JHJA5788UAX18QsFCyQqwHG4HBq/DqkchMg+YDGQOCBXPmxK5BYkjngVYSybYNjNuJwB60AdtZajDesBHJhhxhjgmujsJim0EAr057V5hZQSxSgAncfSu80eWVViDNwOpPT6UAdeQS6shyNvQ9eRWa6g6q24AXn2mHyP73lfLux7f6zNbUSho1YEcr1rnLbQdO1fxZrgv7fzvJFvs+dlxmPnoR6Csa19Eur/RnpZaoXqTqNpRjfRXfxRW113112NLWZJTp7oyIs8p8tAjkjk4znA7ZPTtXE3cjW/nQsVjaAYRByG5yFyR2G0dutddL4M0FCdth2/wCe0n/xVYGq+GtOjgfyIDE+OGDsf5k1Eo1m7q33/wDAOmjWy+nHkk5NXv8AAv1m+l189zkZ75vNO9yArE7QOg5qCTUbnA2PjbxxVWcSwTzW8xHyoTms4sgU4AJHQ0U1JyafT+vIWKqUI0oypq6le10lazfT3u5tm7nlTDHcTyfl6molh7ggd+TWfHOyLkMV/HgfhVmK/GQHAI7EDkVo6batc5I4yEZKSprp+F/LzX3GpbyNCSVchgpIPvXUWGqTRvGgnKOJol8vauJFLDJ6deSPwrmLeVSAQC47H0q/buyyhyMcgjB6Ee1J05dy44uhdXp2S9Hfby/q51i6heNY3Uxmj3LavIUU7jE4HAI2jHfgk9KiuZLuGaXEzTFJWiVCgG79z5g6Drnj6VsaNdfbLXDH5xyf8atyxkHBGKfs5fzE/XaV3akrO/by8un6nLJNcmCUrcI53wqroQ2NzgEfdA6Hp1qQiT7XEj3DYjvPL3HaNwMW4A8Y6nH/ANet/wAsGnBAAR7UezfcX1yF3amle/bqku3r95ejUT2qOeWAwffHeqk0eGxjNWbQsluCOOaV2yclAR3IrU4DNlGVIP5VTaAHqOatXTF5CBkKO2ahyB1PHvQBnapBhYyBxjr71iyQ/NXYGBLm3MZIDDoa56eIxSlHU5FAGrp9kZf3snywjnnvWi9yrgJGMKOAMUyRzLhBwg6AVLBalyABQA1Rn61ZjgYjOMD1NK8kVtwAJJf0FRiWaZsux+g4oA0YCAuzPI6ZpxHYdTVOLIII6+tX8ZwRQBXljy2aiIJNXXAIxUKpzyOlABFHznH/AOuqWqSbQIwQMDLE9q1QoRCT25J9K57VGM6sCcLnr60AcrqU5clIgcHr6mueuIDkk5z6Cuku4hGpYkBf1Nc3ezy8hAVTvjkn8aAM+Z9oKORjtjjmqJuYlYgkn8BSXAIJOSeemKiMRfkqRnoSKAJReRZACk+mTV+0mhdmJLKf4R1xn3rIS0lVgAwPPGOc1ZSAooYEjkHgYxQB0Np5ct/GWHBI6djXa6VAJWyADzjI7153ALlbsNwxByMEY/8A116X4ailEQd87euD60AdJbIyBkIyoxj34rL0MY8WeIweP+Pb/wBFmteE5VjnvWRojEeLfEWep+zf+izWVT4o+v6M7sJ/Br/4F/6XA251G0nFY1+sZjJPPtita5fCkAZrGvGYI2DgYrU4TzXxVGqzlwoB8th9RXIBAZSMDnjgYwa6PxNfefqU8asxWKBu/fvXORPIiRyg5y3OTnjNZQ+OXyO6v/utH/t78xXgwBkkHpg8mlRGU4IwB3qUuTM3QkHJPpVuGNXcBcZ9COprU4SaxYxkFTnPUdjXR2myUAx4yPvJ1x/9asWKCMcAHd79PyrXsQImBAAI6GgDqtGcwXCshyOhFdVPGCuR0H8q5vSpVkIKgK4+8AMA+4rpkObcHqMYoAolSGwaMZHvUrrhs0irls0AP5SFQDjIpjzGKJm2jPQYqVxkYqtc48sD3oAgMttKcSgxsf4hyPxqOa1ZRuUh0PQjkGoJxu4FNimltmG0kr3U9KAEJdGypIpzSQyENJHlsc1b2RXabo8B+4qhMjLJgjmgDUgt8LvkOFHr3pZLrIMcIwo6n1rPlvXuXwCQoqaLgDmgCwiDPPU1OijPTimR849qsKOQaAHqnfvVpfuj3FQr0xViMfLj0oAQjmnIgznuKcVyfpT0Hy8+tAFe9OyHGcZ5PvXMahcLEpLAEnop6D3Nb+qzCNc5BYDA9q4++UyFmkYgE/iaAMa9dp2Ygkn26CsuWBQcthj0xk4rXuVWJdzkID0GOT+FYN3fvyIwAv8AeI5oAZIg5AiUjHPGMVVlgIUkBDjqARkVVmnZ2yxJ71AzlVDgnPSgC5FCGXCyKWGSBkcVrxWyixkeaNWzwCOSKxbQl5BIIycdcDg1uWzo0Oxmyw5ZT2HpQBNpdqHlAK4yRg49P8ivTbO2EFqigAYUZGOK5LQkimuUUxY2jd7AV3MDDaFAPYUAPtkPAPp1FYkul6/aa9qF/pjaaYrvy8i5L7hsXH8I+tdEMDHAqZuUUjr3qJwUrX6HRh8TKg5cqT5lZpq6tdP80jl5Y/FzDLf2Hz6ebWddw+JRG3mnSAMHO3zK7VmHI9u9ZWolRCwOMnjrU+y82bfXv+ncPuPGtT0uSO9lacqZJEIbYTjB+orOXTVlVUBK4ICg9DzXZeIwBKshjAx3Dc1z7Mg/eoj4Tk8cCqhBRuZYjFSrKKaSS2srblCeIWqSAw5c4AOeKpK6hs5JJ6nNWriYS4BbKk5xjpUYSMgDBI9Qeas5jQsroKQJMso7dwPrW9A6yIGjXcvfnkfWuZhtpAmUwQexOMVq2TtFIpXIPT2NAHVWDyIwKnAB4xxiu50+QT2uT94Y3CuJ0xhPgxjD919fp/hXaaQm2IgjBIxigCSWIgkVEqYNXZRwPWq5GGNAEZHFVbkZAAq4VqnOcsR6cUAUypySahcDv1qyelV5Mc0AVi7RNlDg1N/acbAeYPmAwarynGaoS430AX7YgDrV+I8jNZNvIMDnpxV5JwKANRGAqwjZHHSsmKcuwAPFaUOSASeKAL0Y4FToMGq0LZFWV5IoAnQZxSyEIrHr6UJ0NMujiMAdTQBkXRLMwIyT2Nc1qrrEWEeHkHqeB/jWzf3XlhlTJbua5mcGQkscZ6epoA5+7d3kYtksTzms2eAlSenvXRzxEoQwAUdG7VkXAhBPLE+gHBoAxfs4JYMSRjoTimBNrgjIUdRjnFW5TIoyoQAnA9arO82cEgjp90UAOFzwBGCEzyMniujs7aSaASMu1uCOOo9DWdpERiuI3mQOvUgqMgV17zpKvGwIOR2wPSgC94ctih8wjqMEgdBXXxKoAwf0rC0QgLGRxnpXTRqDgHB70ANGGYc1ZCDb61GFG/nHHtVjGFFAFG4iPUdKxNRDbSMEjPWumcCsvUYg6Eg0AcLrNlFPbsSCSOePaubEqPCttDCCd3Oecj1NehSwKFYYByOm4VyF3Zm0n2IjYJJBxyR1xQBy2opbi4ZY4TkEjg4qnC8cTHCnIPQ9BV/UYFe4WWMlCfQ4qF7Sb5ckFTgjtz+FAFm1kidgJCQT0I5Fbdvbx4BxkH7rDv8AjXOxKIzhgQR69PzrUsrw27YyTnqD0NAHTWSmJgRkqOQR1FddpV0JNoZhvH61yFlPHP8ANCSG7of6etbtkSHDA4YdR0BoA6mVd3I7VXI/WrEbb4UcjGRz9ajkABIHrQBXfABrOlAOauzvgY71nSk5oAgkfBwTxVd34p9wSOeMVnvNtYgmgB8rg55qjK431I8oPtVOWX56AJUkKnIOKmF32Jqg0oHFOQqVPBJ/nQBvac+5j0Oa3UOF4rmrL90QAeetb8L5XPc0AXInweatxNubrVAYIHrV23U4BPegC/F3/Sq2oMdhVT8xHX0FWUBwo/E1m30pLueAoPJNAGDOPmIHU9Se1c1fXMcDsIT5r9j2H+NbOqziRWVTtX26n61zNxBNIeAQPbpQBSuriWRi8zFQRgD/AOtVIr5hzgn0OcZq+0DIgGA5P3s9qheAg5Y49BmgCokJLZYDHfJzirAjjL7flOSCOMke9N+Z22jAIznjAq3afZ4pC0n7xhyACABQBowadsXzNpLEdzyaniVmfyhCACepzkUyS+jEYkOFY8gE7gB9B1q9o+ox3csattDZJIA689cVPMr2NFSk4e0W39f5HV6NaiOEEDB2jj0rbRSMZPNYmmT3MsEN35cbWsql9iKd6rgkHOfmPQYAHX2q1Dq9tMsZS3nZ3uPs3lgqSH2b+SGxjb70udGjwtS7SV7b+RqhSWzirAQlRmufk11Vk8xIJFtRZzXQkZATIEKYKgN0IY8HHar8+vWttHNJJDP5MQlxKFG12jBLKvOc/K3UAfKeaPaR7lPB1tPd3LrocVWliLqQRkGoDr9sJHSe3uYAjMjvIq4VhH5mDgn+D5v/AK/FQxeILS4BEMckku5VWJGRixYMRghivRWPJGMUe0j3E8HXSvy6EF1YgKxUH8q5DXdLnnhIRyjKcqwJyPauybWrWRIC0E6CaUxfOFG1hIY8Hnn5h2z6nFZslzFJDMZo2Do0u0IPvhZWjAGT97hf++hR7SPcHhKyXw9bf19x5TeQXFovlzbxICMZ5BB96rQ3y7vLlJUE9eSP/rV6frWgpe2zRMozg4OOfwryvULGSyuGhlBBBwshHB+vvVnMaiwpKu6J1ZhyRnmlSAOQGGCO9ZUCvG+AwDH36/Sta3uSVUyASAcEjG4f40AaNoHgZSOR1DA8V1ulXQuiEY4fsex/+vXM20JcboyGQ9QO31B6Vu2CBD8pAPcdKAO5tjmEIe3So3PzHtUGmTmRNrZ3AfnVmfAXcM+hxQBmXLYY1Sd81aufunAJNZxY8k96AIpzlOufpWJeOVwwHQ9a1Z3wp9KxL9yYXAPI5oAqm8zkA5IqB5SWzk1TD9waXeDzmgCcT7uc1bglCsCTkgZ/GsNJwBknjvzU9rc+Y2e2c0Addp7FuTW9A2V9q5zTHzGvvW/CwC0AaMPzMBWjEMYArNtfWtWE8Z9P50AWwQqj2Fc3qkrGVlUEKD+dbdxKEjUZxnk1gaid4JGBjqSeKAMSfbkkDJHc1lXU8aEhyWf0Hb61Yu7kgsIz7bj1P+FY80qAkEck9aAIZ5WJwgCn0FUZWdeSSSTxn1q86PIuIwMnk9qclkVzu2kkdzQBmmZlUiZSWzgcc1PBbDaWZWLHnHfHatGKCC3TIjSVic5J6fQVet40cFpIm47A8YoAwrpZQsaoAMsF/E10Gh2GtQoDbCwwe8xf+lUdSZTNaKigKbheAPc13WlQOTHk4AHboBWHJzVHqz1vrHscJTShF3vur7Mz4NC8VNAYRLpJt9rqkTNKAm4EHGBnoSBknGatWui+L7Z0kE2iyOtx9oy/mDLeV5WMAAY2+neuvtwUUDAx71YwewFH1ePd/eJ5vVaa5I6/3f6369zgz4e8WlGhNxpBjNtJaIm6TEcb4yF+XttGM5/GpZ9B8XXKTRvNovkyeaREDLtRpAQzLxnPzN1JHzHiu4AIbkVIBhelL6vHuyv7Zrb8sfuOGuNF8WXLytMdCYSzGZ1zNgkw+SR06bf1/Kmto/jRlBe80l5lZWSZmk3JgEcDbt6MwORzmu7K+lMIp/V49395P9rVbJckdP7p56PDnitGRhcaSSrh2y0h3kSmUZ+X+8x6YyKe2jeKsxlm0Y+XO84GZerNuKnjpuwfqBXdkHmonHtSWHiurHLOa0t4x+446WLxYclhon4ebXO6ro2sXIZ7iPTCSMkR7+fzr0qQA5GBWVfxkcgAjPI9qv2Xmzn+vf8ATuH3Hjlzo09ocyL8pPUHge1Mit5IwCmD+tej39oJYm3KCp6giuOubU20wVSTHng9wfSj2Xmw+vf9O4fcVoZ7u2/fRGMAAk4yfqDXXaRdrdRROQqzFASo78dRXLuBJaSMR0U89OcVo6YHht4HHQopyOMcUopxqWv0NK041cKqnIk+a2it0PQtMP71CeoOK0pRhGHoeKxtGm89VkP3h19/eti4PyZHetjzTOnAINY1ySrNjpWxOeDWHeuNx9aAKU8uVNc/qMxTnr61q3D4U1zupS5jYelAFB5wGIHPNRGXnk81QluNkoyeDwaDPz1oAie7ztjByTyfYVrWDEbea5Kycl8k5J5JNdTYMCV4oA7bTThAM9q3omOwVz2nEYWt+E5ZRQBsWo+UZrVgGUUep5rLt/uitRG8uEH0FAFO+nHmsScKOM1z17d+ZuB4XsB3qbVrsF2UHgHj3rBeVixLHC9RjrQBVuEMkmEz64qsbQFiSDgdyeK0N+WwAARyPb61VublcEHBPrjmgCs7pEo24BP3jUIlUODITgdcdBQVBUs7BQDxk1DIHKhYY2ck8fKcfWgCd7lGDOzBAORxinR3X2piAxwBgYbJNUmsL2bEcgKqCfqfrWxpOiSBlOw57EigDLYFr23wCCJ0Udh1r1XSozHboc5JGTk1xmqae0Laa52/NexL09c9a7m2R9oOOBxxWUPjl8jur/7rR/7e/M14MlasqMkVDAmI15FTgY71qcIYOetPHC03BzTgDjmgBQfamn2FAyfWgjigBh4PSo2GakIBpjD8aAK0i5BqhdR5XYCCSehOB+daEhxwKzbo53c9qTvbQBtzpSpbgGVBK/IJcBQPbPWuZ1Pwu1yrEXNoM9zOBg1vCV3hMLOTGTnB5wfas65jZdwA3A8Yrz6NDFxTU6ier6dC24vZHHXemz6bZTC4ns5iUcD7POrt06kA5x71a0yM/ZbYnlTGpx+FVNdslgZ5QOShBOfanabcPHaw7TuXaAVPfiummpqdpu7tudjt9S0/n/Q7HTHEUg2H6iuhmIaI45AUEVyOnzCQrJGcgdR3BrqY3D28Z7EEGug4ChcHAOa569fLkg9K3Lk4Brnrs/Mee9AGZcvgGub1J/lat67bCkVzGpSYyD3oA5+7fg4qoNQ2jDKSR3qW7brWPIfnNAFuwbJU11mnnBWuP01shfY4rqrF8beaAO405gQK6G2ILj6VyumSZ210cEu3aQewoA6O1OWUdhyamv7gRW6jOCeT9KrWLZjJ7nAqnqVyGd+eAcAeoHFAGVesWlLkcHoP8az5ioQlzj26k1Ne3OEJYkk9B71zs927yEsefT0FAFme7IBEXAPG40tnbSXsmASQCMsen/16jsrV9RlzwkGecAjPsK6/TrARIqRoFUDgdqAKVto0ecuu89sjp9PStFNIRiCAAR0+la8duAoAGD3qdIT2FAGXFpA3D5QfU1fW0VRtUDjvVrheFAzjk0qqSSST7UAc/wCJLdUXRhn72pwg8/Wurgiwq8cDpXN+J0AGiep1WD/2auqgQqAMcVlD45fI7q/+60f+3vzLSAYGBinhRu70BcUo681qcI3aNx604AdKU4zxS4AyaAFwMU0jilJz0ppJoAaRUb8VITxzUbmgCrKcDNZV2SGwOpFac7DBPpWLdyETgk4AwCPWgCAEoTuwBRIQ65Byw6H1qrK4DEE5Haq73JRc5GOhoAztejSTT7gOPmWNiPqBXMwh4Y4d33XRcflXRatdrLZXQHTym/kazUjH9mW7cN+6Xj8BWX/L35Hd/wAwP/b/AOha067MEgI57EZ6iu506ZZbRcHKnn6V5pE5DgdQOSfQV2Ph67BkMZIww6ehrU4S7dnDMPc1z07ZZvqa3tQfHzHv/Oubnf7xoAyb98A1yeoy5fHpXSX8hwa5K+fLsc96AMe7blqxpXPmHmtO7f5mNY7HLE0AXNOfDke+a6eyk5HNcjattmHvXSWT8CgDttKm4XJ6V1Fu+VWuK0uTDYrr7J8qPagDq7I4jU+mTXP6nchDI55APA9TW3aNtsnbuAQK4zVbgtdsoPAPGenPegChPdPKxJY5J5A7ClstObUJt2CIlPJ/ve1OtLB76fg4izyQOprudO01IYlAUDAAAAoAr6dpgVVBUKo6ADpW9DbhAOBxUkUGwZxU6rnsaAGhBngfjUgBK4pyp+tShP1oAriPHapRGAAOlTBBShP1oAxPEOlXuo21n9ga3We2u0uR55IU7QeOBnqRREPGwOVHh/8AHzq6AJVmIbcVm6abvdnZTxsoU1TcYtLa6vuc5/xXPp4d/wDI9KB45J/5l3/yPXT59qB3pey82V9e/wCncPuOXx45z/zLv/kelA8c/wDUu/8AkeuoHJ7U4HjFHsvNh9e/6dw+45THjjP/ADLv/kemsfHHf/hHv/I1dURxUbcUey82H17/AKdw+45Zj42xz/wj/wD5GqFj40H/AEAf/I1dNLIAOc59KrSygLljgnp70ey/vMPr3/TuH3HMv/wl7sEJ0PJOAB5tVrjTvFwBeRNJxnkjzOK1Li5cSMeePSpRrCXTIs8bYIAJHVT3I9R7GuHFLE06kXS1j17/ACLjjU0704X9DlpbPxGpJY6WcdgZKpyw66UIJ07BOeN/Fd5PaHyfMUh0I+Vh3rKngBXIGDXVTcKsbxkyXjWt6cPu/wCCcPc2eqtG6MLQq4IO3dTY3e1jjhcZwoUj3xXUTQlGPtVW5sEuEyyYJHHHNaxpqLvczrYuVWCp8qSvfRWOdBCNkHPPf+VaunSmLa4J5bP0rEvYptOutki5jbo3+e9aVlKGCkcg8Voch1d+Q8RI74YfQiuXuXxuFdFckragE8+WP6Vy144APNAGJqEuM5rlbt8sT71u6lLwwz1rm7l/mPNAGVevhWNZlXL18sBmqdADkOHU+hrobKTpXOmtewlyoOaAOx02TDr712OnycKDXBWEo+Ug9K7HTJchSOaAOzL7NNcDglQB9T/k1xtxA1zdxxoDknDH0ArqbhybFivOGB/Q1BpVgN7SOMs54z2FAF3SdOSKJCRgAcCt+FAMADk1XhQKoGMVaQZNAEygk+9SquaEGRnvUyjigBFTGOKkC0oHSnhc0ANCZFPCdKeBS4oAQDBqVOccUwDnFTIOOmaAHgAilA9aUDA6Uv0oAaB7UpGBTsU0gg9KAI2OAaru2Bgdasy/dPGKrBctk0AV2QnnvWNqLuG3DIA447V0ZQEYrJvtPkkzsAIPUVzYfF0sRdU3ez1G4tbnLz3RRQWOVOc1TjvVaQEjABycda1rvQLuY8FQOwxVE6BdxHIjBxxkda6RG1pt+Wy+/CBcbG7/AIVZuYoZFEkZKMeqHt9PaqdhpUsSh5CC3YelXXQgHdWDoR51UWj626ju7WM+W3jYAkZbtVGVGDnPT0rXcdxVaSPBJxz2PpW4jm9Vso7uJo2AJxkccg1zenu1vei3k+7nBPpXcXMGCcA1zd5ZFNRSUjhuv4GgDf1MFbQY64AP0rjr+TCmuuuZPNsUycnyzn3x/wDqrh9Vk27xn6UAc5fy7nPPA4rBuZOTzWnevjNYN5JhWPrQBnyuXlY0yiigANW7GTEhX16VVp0TbJgfegDrbB+RzXX6PLyBmuIsXyQc11WlS4mUZ6kUAei2mJYNpGQVH6Vftk2YB+8OtZWmPnYp+lbRBVhg8mgC2hzyOatxCq1uPlGKuxrke1AE6CpwOlRoKnUEYoAcq08A0Ad6kAoAaBTgM04CngUAMC1Kg6UgFPA59qAFoz7UoFLigBOtIelOxikNAELjK0wLgVMRwRTSKAI8UhGOvSpCKaQa5amFg3zQ92XdfqNSez2ISg68VCyAZwKtEVGwrSjKo01UVmuvcGl0KbLx0qtKnFaDLVaROcYrYRnPHySKgfB44q86YzVaROaAKE8W4cVmXUAnj24wynIPpW5tzuBHAqjcgFsqMAdfegDIucx2uw4yEIP1P/664TV3/fEeldvqL4ic561wOqNmVjnrQBzl8x5rnr18sF9K3L9+DXOTNulY0AMooooAU0HrmikNAG/p8pKqfaun0+Ta6n3FcbpkmAAemcV1lieVANAHpWkSAsD/ALNdEpBcZOcACuT0N8ovPJGK6iIncpPcCgDThHAxV2MVUh7VeiGRQBPGOlTqKjQYqYUAPFPApoFSAUAOAox0oAp1AABSjjikHFOU5OKAFBpcUYGKB0oADSUpNBFADDSH0pSOelGKAGYoIFLikoAYRTSKkJAppNAELjqaruOtWmHFQOM9KAKjoMdKqyAAHpV5xVWVQQSaAMu5Y7SoOB3x3qr1U9M9x7VcnQEkDBNUXGxioOTg5I7cdqAOe1c7QydcZrgtTb941d1rH32weoB/SuB1Q/vGoA5jUH4bmsInJJrV1FvlY/hWSKAFooooAWiiigC5YNhiPQ5rrtOfKA56Vxtk2JvqK63S3yo5oA9D0F/ljPpiutRwdmAMZritEJ8oc9K7OI74I5B0OM/WgDYt+grRi4ArOtsECtGOgCwhJqdahTipgKAJVHtTxTBTxQAtBOKM8UzDFsmgCQEHvTx1poGKeOKAFAowRQMmnDOcmgBuPWg049aaaAGkEUlOOTTaAAimmnEE0h/OgBh4FMPAp5GRUT5FAASKhYdacTk0xic0AROPWqU4ODirr1VlAKnIoAxJGLScfQ1XOAx9MVfkhRGJHU1RcgOc4Ax3NAHM6yBubHTFefaof3rc16JribZXAII2g/TivO9UH7x/rQByOpnCEeprNrS1P7oPvWbQAUUUUALkUZFFFAD4ZAkoYk4resNYs4AN7sMf7JNFFAHWaZ400W2QCWeQH2iY10Ft8SvDMSANdzD2EDf4UUUAa1v8WPCUaANeT5H/AE7t/hVxPjD4OHW+n/8AAZ/8KKKAJ1+Mvgsdb24/8Bn/AMKlHxp8Ej/l+uf/AAFf/CiigB4+Nfgof8v1x/4Cv/hS/wDC6/BI/wCX65/8BX/woooAUfGzwQOt/c/+Ar/4Uv8AwuzwR/z/AFz/AOAr/wCFFFADh8bfBA/5f7n/AMBX/wAKcPjf4HHW+uf/AAFf/CiigBf+F3+B/wDn/uf/AAFf/ClHxw8Df8/9z/4CP/hRRQA1/jl4HAyL26bHpavz+Yph+Ongn/nve/8AgMf8aKKAGH46eCj0uL3/AMBj/jR/wvLwV/z8Xv8A4DH/ABoooAP+F5+Cf+e97/4DN/jSH45eCu1xef8AgMaKKAGn44+C/wDnvef+Ax/xqN/jf4LPSe8/8Bj/AI0UUAMPxs8G9ri8/wDAc0w/Grwac/6Ref8AgOaKKAGn40+Dj/y8Xn/gOagl+MnhBxxPd/8Afg0UUAU5fi34Vf7s11+MBqhN8UfDT5Hm3H/fg0UUAZF74/0GYEJLPz6xGuTvfEFhO7mNnIJ4ymKKKAMC8uopwQhJ+oxVHNFFABmjPtRRQB//2Q==\",\n    \"original_image\": \"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\",\n    \"patient_analysis\": {\n        \"findings\": [\n            {\n                \"confidence\": \"moderate\",\n                \"how_it_may_affect_you\": \"An enlarged heart can sometimes lead to symptoms like shortness of breath, fatigue, or swelling in your legs, but not everyone experiences these symptoms.\",\n                \"name\": \"Cardiomegaly\",\n                \"what_it_means\": \"Cardiomegaly means that your heart appears larger than normal on the X-ray.\",\n                \"what_to_do_next\": [\n                    \"Schedule a follow-up appointment with your doctor.\",\n                    \"Discuss the findings with your healthcare provider to determine if further tests are needed.\"\n                ]\n            },\n            {\n                \"confidence\": \"moderate\",\n                \"how_it_may_affect_you\": \"This condition can sometimes lead to symptoms such as chest pain or back pain, but it might not cause any symptoms initially.\",\n                \"name\": \"Aortic Enlargement\",\n                \"what_it_means\": \"Aortic enlargement refers to the widening of the aorta, the main blood vessel that carries blood from your heart to the rest of your body.\",\n                \"what_to_do_next\": [\n                    \"Arrange a follow-up visit with your doctor.\",\n                    \"Consult with your healthcare provider to discuss potential additional evaluations or monitoring.\"\n                ]\n            }\n        ],\n        \"next_steps\": {\n            \"doctor_consultation\": \"Make an appointment with your doctor for a detailed review of these findings and any necessary follow-ups.\",\n            \"general_advice\": \"Please keep calm and wait for your doctor's guidance. This analysis is only a tool to assist and should not be used to make any medical decisions on its own.\"\n        },\n        \"patient_friendly_explanation\": {\n            \"important_note\": \"This report is based on an automated analysis and is not a substitute for a professional medical diagnosis. Please consult your doctor for confirmation and guidance.\",\n            \"summary\": \"The automated analysis of your chest X-ray identified two areas that may need further evaluation.\",\n            \"total_findings\": \"2\"\n        }\n    },\n    \"status\": \"Abnormal\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Register Patient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Surya Theja\",\n    \"email\": \"surya@gmail.com\",\n    \"password\": \"password\",\n    \"age\": 24,\n    \"gender\": \"male\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/patient/register",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"patient",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register Patient",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Surya Theja\",\n    \"email\": \"surya@gmail.com\",\n    \"password\": \"password\",\n    \"age\": 24,\n    \"gender\": \"male\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/patient/register",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"patient",
+										"register"
+									]
+								}
+							},
+							"status": "CREATED",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 17:36:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Patient created successfully\",\n    \"patient_id\": \"673f6f86bd066991e45c8641\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login Patient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"venkat@gmail.com\",\n    \"password\":\"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/login/patient",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"login",
+								"patient"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login Patient",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"venkat@gmail.com\",\n    \"password\":\"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/login/patient",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"login",
+										"patient"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 17:32:58 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "469"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"email\": \"venkat@gmail.com\",\n    \"id\": \"673d23d6091a36737bf3ab3c\",\n    \"name\": \"Venkat Pantham\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczMjIxMDM3OCwianRpIjoiZTU2ZDZmNTUtMzMyZi00Yzg5LTgwNjYtZDM2NDc2ZGZiMTBhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjY3M2QyM2Q2MDkxYTM2NzM3YmYzYWIzYyIsIm5iZiI6MTczMjIxMDM3OCwiY3NyZiI6Ijc5M2YwZDE4LTRhMDgtNGUwYy05Y2VlLTllZDYzYjg0YzEwYSIsImV4cCI6MTczMjIxMzk3OH0.7Js6ayy-406lllKnR_EBrsjKo3Xn5h-1P2R1lPzSF5A\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Patient Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczMjIxMDM3OCwianRpIjoiZTU2ZDZmNTUtMzMyZi00Yzg5LTgwNjYtZDM2NDc2ZGZiMTBhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjY3M2QyM2Q2MDkxYTM2NzM3YmYzYWIzYyIsIm5iZiI6MTczMjIxMDM3OCwiY3NyZiI6Ijc5M2YwZDE4LTRhMDgtNGUwYy05Y2VlLTllZDYzYjg0YzEwYSIsImV4cCI6MTczMjIxMzk3OH0.7Js6ayy-406lllKnR_EBrsjKo3Xn5h-1P2R1lPzSF5A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/patient",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Patients Copy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/patient",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"patient"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 17:33:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3252"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"age\": 25,\n    \"email\": \"venkat@gmail.com\",\n    \"gender\": \"Male\",\n    \"id\": \"673d23d6091a36737bf3ab3c\",\n    \"medical_records\": [\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 16:39:14 GMT\",\n            \"diagnosis\": \"Cardiomegaly, Aortic Enlargement\",\n            \"id\": \"673f6232630f33af7052eb63\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f6232630f33af7052eb62\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 16:13:09 GMT\",\n            \"diagnosis\": \"Nodule/Mass\",\n            \"id\": \"673f5c15438742c9e4c626f3\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f5c15438742c9e4c626f2\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 16:12:03 GMT\",\n            \"diagnosis\": \"Aortic Enlargement, Cardiomegaly\",\n            \"id\": \"673f5bd3438742c9e4c626f1\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f5bd3438742c9e4c626f0\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 16:06:49 GMT\",\n            \"diagnosis\": \"NoduleMass\",\n            \"id\": \"673f5a9a438742c9e4c626ef\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f5a99438742c9e4c626ee\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 16:03:50 GMT\",\n            \"diagnosis\": \"NoduleMass\",\n            \"id\": \"673f59e6438742c9e4c626ed\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f59e6438742c9e4c626ec\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 15:42:21 GMT\",\n            \"diagnosis\": \"Nodule/Mass\",\n            \"id\": \"673f54dd630f33af7052eb61\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f54dd630f33af7052eb60\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 15:40:19 GMT\",\n            \"diagnosis\": \"NoduleMass\",\n            \"id\": \"673f5463630f33af7052eb5f\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f5463630f33af7052eb5e\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 15:39:47 GMT\",\n            \"diagnosis\": \"Cardiomegaly, Aortic enlargement\",\n            \"id\": \"673f5443630f33af7052eb5d\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f5443630f33af7052eb5c\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 15:35:45 GMT\",\n            \"diagnosis\": \"NoduleMass\",\n            \"id\": \"673f535248b8e74b1034d614\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f535148b8e74b1034d613\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 15:15:07 GMT\",\n            \"diagnosis\": \"\",\n            \"id\": \"673f4e7bc188de2dd1a3f2e7\",\n            \"status\": \"Normal\",\n            \"xray_image_id\": \"673f4e7bc188de2dd1a3f2e6\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 15:10:08 GMT\",\n            \"diagnosis\": \"Pleural Effusion, Aortic Enlargement\",\n            \"id\": \"673f4d50c188de2dd1a3f2e5\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673f4d50c188de2dd1a3f2e4\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 04:05:13 GMT\",\n            \"diagnosis\": \"Aortic Enlargement, Cardiomegaly\",\n            \"id\": \"673eb179cfe35d38539b7017\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673eb179cfe35d38539b7016\"\n        },\n        {\n            \"date_uploaded\": \"Thu, 21 Nov 2024 02:19:40 GMT\",\n            \"diagnosis\": \"Cardiomegaly, Aortic Enlargement\",\n            \"id\": \"673e98bcc81637e56fc74b76\",\n            \"status\": \"Abnormal\",\n            \"xray_image_id\": \"673e98bcc81637e56fc74b75\"\n        }\n    ],\n    \"name\": \"Venkat Pantham\",\n    \"phone\": \"+1234567890\",\n    \"risk_factors\": [\n        \"Smoker\",\n        \"Low Immunity\"\n    ],\n    \"status\": \"Abnormal\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Patient Xray",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczMjIxMDM3OCwianRpIjoiZTU2ZDZmNTUtMzMyZi00Yzg5LTgwNjYtZDM2NDc2ZGZiMTBhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjY3M2QyM2Q2MDkxYTM2NzM3YmYzYWIzYyIsIm5iZiI6MTczMjIxMDM3OCwiY3NyZiI6Ijc5M2YwZDE4LTRhMDgtNGUwYy05Y2VlLTllZDYzYjg0YzEwYSIsImV4cCI6MTczMjIxMzk3OH0.7Js6ayy-406lllKnR_EBrsjKo3Xn5h-1P2R1lPzSF5A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/patient/673d23d6091a36737bf3ab3c/xray/673f6232630f33af7052eb62",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"patient",
+								"673d23d6091a36737bf3ab3c",
+								"xray",
+								"673f6232630f33af7052eb62"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Patient Details Copy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/patient/673d23d6091a36737bf3ab3c/xray/673f6232630f33af7052eb62",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"patient",
+										"673d23d6091a36737bf3ab3c",
+										"xray",
+										"673f6232630f33af7052eb62"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 17:33:41 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "35680"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"doctor_analysis\": {\n        \"abnormalities\": [\n            {\n                \"clinical_implications\": [\n                    \"Potential heart failure\",\n                    \"Increased cardiac workload\"\n                ],\n                \"confidence_interpretation\": \"The model has moderate confidence in detecting cardiomegaly. While not highly certain, the finding should be considered in the clinical context.\",\n                \"confidence_score\": \"76.74%\",\n                \"description\": \"An enlargement of the heart, specifically the cardiac silhouette appears larger than normal on the chest X-ray.\",\n                \"name\": \"Cardiomegaly\",\n                \"potential_causes\": [\n                    \"Hypertension\",\n                    \"Heart valve disease\"\n                ],\n                \"recommendations\": [\n                    {\n                        \"reason\": \"To evaluate the heart's structure and function in more detail.\",\n                        \"test_or_imaging\": \"Echocardiogram\"\n                    },\n                    {\n                        \"reason\": \"For comprehensive assessment and management of potential cardiac conditions.\",\n                        \"specialist_referral\": \"Cardiologist\"\n                    }\n                ],\n                \"severity\": \"Moderate\",\n                \"urgency\": \"Low\"\n            },\n            {\n                \"clinical_implications\": [\n                    \"Risk of aortic rupture\",\n                    \"Potential for thromboembolic events\"\n                ],\n                \"confidence_interpretation\": \"The model has moderate confidence in detecting aortic enlargement. Further clinical correlation and imaging are recommended to confirm the finding.\",\n                \"confidence_score\": \"68.04%\",\n                \"description\": \"An enlargement of the aorta, indicating that the aortic diameter exceeds normal measurements on the chest X-ray.\",\n                \"name\": \"Aortic Enlargement\",\n                \"potential_causes\": [\n                    \"Aortic aneurysm\",\n                    \"Aortic dissection\"\n                ],\n                \"recommendations\": [\n                    {\n                        \"reason\": \"To obtain detailed images of the aorta and assess the extent of enlargement.\",\n                        \"test_or_imaging\": \"CT Angiography\"\n                    },\n                    {\n                        \"reason\": \"For evaluation and management of aortic abnormalities.\",\n                        \"specialist_referral\": \"Vascular Surgeon\"\n                    }\n                ],\n                \"severity\": \"Moderate\",\n                \"urgency\": \"Low\"\n            }\n        ],\n        \"analysis_for_doctor\": {\n            \"summary\": \"The chest X-ray reveals two detected abnormalities: Cardiomegaly and Aortic enlargement. Both findings have moderate confidence scores and may require further evaluation to determine their clinical significance.\",\n            \"total_abnormalities\": \"2\"\n        },\n        \"overall_conclusions\": {\n            \"diagnostic_confidence\": \"Moderate\",\n            \"follow_up_actions\": [\n                \"Order additional imaging studies as recommended.\",\n                \"Refer the patient to appropriate specialists for further evaluation.\"\n            ],\n            \"further_review_needed\": \"Yes\"\n        }\n    },\n    \"labeled_image\": \"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\",\n    \"original_image\": \"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\",\n    \"patient_analysis\": {\n        \"findings\": [\n            {\n                \"confidence\": \"moderate\",\n                \"how_it_may_affect_you\": \"An enlarged heart can sometimes lead to symptoms like shortness of breath, fatigue, or swelling in your legs, but not everyone experiences these symptoms.\",\n                \"name\": \"Cardiomegaly\",\n                \"what_it_means\": \"Cardiomegaly means that your heart appears larger than normal on the X-ray.\",\n                \"what_to_do_next\": [\n                    \"Schedule a follow-up appointment with your doctor.\",\n                    \"Discuss the findings with your healthcare provider to determine if further tests are needed.\"\n                ]\n            },\n            {\n                \"confidence\": \"moderate\",\n                \"how_it_may_affect_you\": \"This condition can sometimes lead to symptoms such as chest pain or back pain, but it might not cause any symptoms initially.\",\n                \"name\": \"Aortic Enlargement\",\n                \"what_it_means\": \"Aortic enlargement refers to the widening of the aorta, the main blood vessel that carries blood from your heart to the rest of your body.\",\n                \"what_to_do_next\": [\n                    \"Arrange a follow-up visit with your doctor.\",\n                    \"Consult with your healthcare provider to discuss potential additional evaluations or monitoring.\"\n                ]\n            }\n        ],\n        \"next_steps\": {\n            \"doctor_consultation\": \"Make an appointment with your doctor for a detailed review of these findings and any necessary follow-ups.\",\n            \"general_advice\": \"Please keep calm and wait for your doctor's guidance. This analysis is only a tool to assist and should not be used to make any medical decisions on its own.\"\n        },\n        \"patient_friendly_explanation\": {\n            \"important_note\": \"This report is based on an automated analysis and is not a substitute for a professional medical diagnosis. Please consult your doctor for confirmation and guidance.\",\n            \"summary\": \"The automated analysis of your chest X-ray identified two areas that may need further evaluation.\",\n            \"total_findings\": \"2\"\n        }\n    },\n    \"status\": \"Abnormal\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Upload Patient Xray",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczMjIxMDM3OCwianRpIjoiZTU2ZDZmNTUtMzMyZi00Yzg5LTgwNjYtZDM2NDc2ZGZiMTBhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjY3M2QyM2Q2MDkxYTM2NzM3YmYzYWIzYyIsIm5iZiI6MTczMjIxMDM3OCwiY3NyZiI6Ijc5M2YwZDE4LTRhMDgtNGUwYy05Y2VlLTllZDYzYjg0YzEwYSIsImV4cCI6MTczMjIxMzk3OH0.7Js6ayy-406lllKnR_EBrsjKo3Xn5h-1P2R1lPzSF5A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"venkat@gmail.com\",\n    \"password\":\"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/patient/xray/upload",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"patient",
+								"xray",
+								"upload"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Upload Patient Xray",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/venkatpantham/Downloads/WhatsApp Image 2024-11-21 at 10.17.53.jpeg"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/patient/xray/upload",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"patient",
+										"xray",
+										"upload"
+									]
+								}
+							},
+							"status": "CREATED",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.24.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 17:35:02 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "192"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"date_uploaded\": \"Thu, 21 Nov 2024 17:35:02 GMT\",\n    \"diagnosis\": \"Nodule/Mass\",\n    \"id\": \"673f6f46bd066991e45c8640\",\n    \"status\": \"Abnormal\",\n    \"xray_image_id\": \"673f6f46bd066991e45c863f\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
