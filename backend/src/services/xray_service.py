@@ -1,10 +1,10 @@
 import os
-from app.utils.csv_utils import get_labels_from_csv
-from app.utils.file_utils import save_uploaded_file, cleanup_folder
-from app.utils.image_utils import draw_boxes, encode_image_base64
-from app.utils.api_utils import send_to_roboflow
-from app.utils.analysis_utils import get_detailed_analysis_doctor, get_detailed_analysis_patient
-from app.models.xray_image import save_xray_to_db
+from src.utils.csv_utils import get_labels_from_csv
+from src.utils.file_utils import save_uploaded_file, cleanup_folder
+from src.utils.image_utils import draw_boxes, encode_image_base64
+from src.utils.api_utils import send_to_roboflow
+from src.utils.analysis_utils import get_detailed_analysis_doctor, get_detailed_analysis_patient
+from src.models.xray_image import save_xray_to_db
 
 def process_xray_upload(patient_id, file):
     upload_folder = os.getenv('UPLOAD_FOLDER', 'uploads')

@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from app.models.doctor import create_doctor, get_patients_for_doctor, get_patients_by_id
-from app.models.xray_image import get_xray_image_for_doctor
+from src.models.doctor import create_doctor, get_patients_for_doctor, get_patients_by_id
+from src.models.xray_image import get_xray_image_for_doctor
 
 doctor_bp = Blueprint('doctor_bp', __name__)
 

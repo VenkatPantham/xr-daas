@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify, make_response
 from flask_jwt_extended import create_access_token
-from app.models.doctor import find_doctor_by_email
-from app.models.patient import find_patient_by_email
-from app.utils.password_utils import check_password
+from src.models.doctor import find_doctor_by_email
+from src.models.patient import find_patient_by_email
+from src.utils.password_utils import check_password
 from datetime import timedelta
 
 auth_bp = Blueprint('auth_bp', __name__)

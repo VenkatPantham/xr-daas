@@ -1,7 +1,7 @@
 import datetime
-from app import mongo
+from src import mongo
 from bson.objectid import ObjectId
-from app.utils.objectid_utils import convert_objectid_to_str
+from src.utils.objectid_utils import convert_objectid_to_str
 
 # Function to upload X-ray image (both original and enhanced)
 def save_xray_to_db(patient_id, original_image_b64, labeled_image_b64, predictions, doctor_analysis, patient_analysis):

@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from app.models.patient import create_patient, find_patient_by_id
-from app.models.xray_image import get_xray_image_for_patient
-from app.services.xray_service import process_xray_upload
+from src.models.patient import create_patient, find_patient_by_id
+from src.models.xray_image import get_xray_image_for_patient
+from src.services.xray_service import process_xray_upload
 
 patient_bp = Blueprint('patient_bp', __name__)
 

@@ -1,8 +1,8 @@
 import datetime
-from app import mongo
+from src import mongo
 from bson.objectid import ObjectId
-from app.utils.password_utils import hash_password
-from app.utils.objectid_utils import convert_objectid_to_str
+from src.utils.password_utils import hash_password
+from src.utils.objectid_utils import convert_objectid_to_str
 
 # Example function to create a patient (with hashed password)
 def create_patient(name, age, gender, email, password):
