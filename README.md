@@ -81,8 +81,7 @@ XR-DaaS/
      ```
 
 3. Configure environment variables:
-   - Frontend: Create a `.env` file in the `frontend` directory with `REACT_APP_` prefixed variables.
-   - Backend: Create a `.env` file in the `backend` directory with database and API keys.
+   - Create a single `.env` file in the root directory of the project. This file will be shared by both the frontend and backend. Include all necessary variables, ensuring that frontend variables are prefixed with `REACT_APP_`.
 
 ### Run the Application
 
@@ -99,10 +98,6 @@ XR-DaaS/
   npm start
   ```
 
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
-
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
